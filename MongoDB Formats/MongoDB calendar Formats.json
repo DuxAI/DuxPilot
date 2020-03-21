@@ -1,38 +1,19 @@
-MongoDB slack.msg Format:
-    "type" = STRING Format
-    "text" = STRING Format
-    "user_id" = STRING Format
-    "channel_id" = STRING Format
-    "team_id" = STRING Format
-    "ts" = STRING Format
-    "time_stamp" = INT 32 Format
-
-MongoDB slack.channels Format:
-    "channel_id" = STRING Format
-    "channel_name" = STRING Format
-    "is_channel" = BOOLEAN (FLAG) Format
-    "is_group" = BOOLEAN (FLAG) Format
-    "is_im" = BOOLEAN (FLAG) Format
+MongoDB calendar.events Format:
+    "event_id" = STRING Format
+    "event_name" = STRING Format
+    "Has Changed" = BOOLEAN (FLAG) Format
+    "event_description" = STRING Format
+    "event_ts" = STRING Format
+    "eveve_date" = STRING Format
+    "eveve_duration" = INT 32 Format
+    "creator_id" = STRING Format
     "participant_id_arr" = Array of STRINGs Format
         "participant_id_0" = STRING Format
         "participant_id_1" = STRING Format
         ...
-        "participant_id_(participants_sum-1)" = STRING Format
-    "team_id" = STRING Format
-    "channel_topic" = STRING Format
-    "channel_purpose" = STRING Format
-    "participants_sum" = INT 32 Format
 
-MongoDB slack.users Format:
+MongoDB calendar.users Format:
     "user_id" = STRING Format
     "user_name" = STRING Format
     "name" = STRING Format
     "second_name" = STRING Format
-    "channel_id_list" = Array of Strings Format
-        "channel_id_0" = STRING Format
-        "channel_id_1" = STRING Format
-        ...
-    "team_id_list" = Array of Strings Format
-        "team_id_0" = STRING Format
-        "team_id_1" = STRING Format
-        ...
