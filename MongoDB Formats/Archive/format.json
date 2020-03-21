@@ -1,0 +1,933 @@
+{
+  client_msg_id: '71a468cc-b9e1-41f1-9c7f-b8685f6ea331',
+  type: 'message',
+  text: 'We need an integration for G-suite for nodeJS server that is running express. Need to connect to mongoldb as well',
+  user: 'U0105BFAEEQ',
+  ts: '1584569633.000400',
+  team: 'T01081GCW4E',
+  blocks: [ { type: 'rich_text', block_id: '3p+', elements: [Array] } ]
+}
+{
+  client_msg_id: 'f7170258-2582-45c4-bd67-398746b552ea',
+  type: 'message',
+  text: 'Yalla Corvid19',
+  user: 'U0105QV38LQ',
+  ts: '1584568080.000200',
+  team: 'T01081GCW4E',
+  blocks: [ { type: 'rich_text', block_id: 'M0m', elements: [Array] } ]
+}
+{
+  client_msg_id: '828f96b8-8b8f-4320-acde-e9baa4f4e714',
+  type: 'message',
+  text: 'test',
+  user: 'U0105QV38LQ',
+  ts: '1584541821.001000',
+  team: 'T01081GCW4E',
+  blocks: [ { type: 'rich_text', block_id: 'Rzg', elements: [Array] } ]
+}
+{
+  client_msg_id: '27c9398a-b701-437b-ac30-336fcc08f924',
+  type: 'message',
+  text: 'flow',
+  user: 'U0105QV38LQ',
+  ts: '1584541819.000800',
+  team: 'T01081GCW4E',
+  blocks: [ { type: 'rich_text', block_id: 'Eiw', elements: [Array] } ]
+}
+{
+  client_msg_id: '794466d1-0237-46a2-9aa8-d308bc025a1b',
+  type: 'message',
+  text: 'שולח פה כמה הועדות שתהיה תנועה',
+  user: 'U0105QV38LQ',
+  ts: '1584541793.000600',
+  team: 'T01081GCW4E',
+  blocks: [ { type: 'rich_text', block_id: 'U21u', elements: [Array] } ]
+}
+{
+  client_msg_id: 'dedc2af2-dc94-4eb4-b1c0-9a6ce78d3d94',
+  type: 'message',
+  text: 'היי כולם',
+  user: 'U0105QV38LQ',
+  ts: '1584541786.000300',
+  team: 'T01081GCW4E',
+  blocks: [ { type: 'rich_text', block_id: 'QA=', elements: [Array] } ]
+}
+{
+  type: 'message',
+  subtype: 'channel_join',
+  ts: '1584456226.001000',
+  user: 'U0105QV38LQ',
+  text: '<@U0105QV38LQ> has joined the channel'
+}
+{
+  client_msg_id: '18b496ec-b01c-4a02-9bb0-1c5d5105f1e9',
+  type: 'message',
+  text: 'hi good',
+  user: 'U0105BFAEEQ',
+  ts: '1584455841.000900',
+  team: 'T01081GCW4E',
+  blocks: [ { type: 'rich_text', block_id: '7wnh', elements: [Array] } ]
+}
+{
+  type: 'message',
+  subtype: 'channel_join',
+  ts: '1584455781.000500',
+  user: 'U0105BFAEEQ',
+  text: '<@U0105BFAEEQ> has joined the channel'
+}
+{
+  type: 'message',
+  subtype: 'channel_join',
+  ts: '1584454365.000200',
+  user: 'U01081GCWCE',
+  text: '<@U01081GCWCE> has joined the channel'
+}
+{
+  id: 'CV9NLNDUZ',
+  name: 'slack-integrator',
+  is_channel: true,
+  is_group: false,
+  is_im: false,
+  created: 1584454365,
+  is_archived: false,
+  is_general: false,
+  unlinked: 0,
+  name_normalized: 'slack-integrator',
+  is_shared: false,
+  parent_conversation: null,
+  creator: 'U01081GCWCE',
+  is_ext_shared: false,
+  is_org_shared: false,
+  shared_team_ids: [ 'T01081GCW4E' ],
+  pending_shared: [],
+  pending_connected_team_ids: [],
+  is_pending_ext_shared: false,
+  is_member: true,
+  is_private: false,
+  is_mpim: false,
+  topic: { value: '', creator: '', last_set: 0 },
+  purpose: { value: '', creator: '', last_set: 0 },
+  previous_names: [],
+  num_members: 3
+}
+{
+  type: 'message',
+  text: '',
+  files: [
+    {
+      id: 'F0109QYH9CL',
+      created: 1584569780,
+      timestamp: 1584569780,
+      name: 'conversations.json',
+      title: 'conversations.json',
+      mimetype: 'text/plain',
+      filetype: 'javascript',
+      pretty_type: 'JavaScript/JSON',
+      user: 'U0105QV38LQ',
+      editable: true,
+      size: 2294,
+      mode: 'snippet',
+      is_external: false,
+      external_type: '',
+      is_public: true,
+      public_url_shared: false,
+      display_as_bot: false,
+      username: '',
+      url_private: 'https://files.slack.com/files-pri/T01081GCW4E-F0109QYH9CL/conversations.json',
+      url_private_download: 'https://files.slack.com/files-pri/T01081GCW4E-F0109QYH9CL/download/conversations.json',
+      permalink: 'https://dux-ai.slack.com/files/U0105QV38LQ/F0109QYH9CL/conversations.json',
+      permalink_public: 'https://slack-files.com/T01081GCW4E-F0109QYH9CL-dd6f3cda1f',
+      edit_link: 'https://dux-ai.slack.com/files/U0105QV38LQ/F0109QYH9CL/conversations.json/edit',
+      preview: '{"ok":true,"channels":[{"id":"CV71L2M2N","name":"general","is_channel":true,"is_group":false,"is_im":false,"created":1584454365,"is_archived":false,"is_general":true,"unlinked":0,"name_normalized":"general","is_shared":false,"parent_conversation":null,"creator":"U01081GCWCE","is_ext_shared":false,"is_org_shared":false,"shared_team_ids":["T01081GCW4E"],"pending_shared":[],"pending_connected_team_ids":[],"is_pending_ext_shared":false,"is_member":false,"is_private":false,"is_mpim":false,"topic":{"value":"Company-wide announcements and work-based matters","creator":"U01081GCWCE","last_set":1584454365},"purpose":{"value":"This channel is for workspace-wide communication and announcements. All members are in this channel.","creator":"U01081GCWCE","last_set":1584454365},"previous_names":[],"num_members":3},{"id":"CV9NLNDUZ","name":"slack-integrator","is_channel":true,"is_group":false,"is_im":false,"created":1584454365,"is_archived":false,"is_general":false,"unlinked":0,"name_normalized":"slack-integrator","is_shared...',
+      preview_highlight: `<div class="CodeMirror cm-s-default CodeMirrorServer" oncopy="if(event.clipboardData){event.clipboardData.setData('text/plain',window.getSelection().toString().replace(/\\u200b/g,''));event.preventDefault();event.stopPropagation();}">\n` +
+        '<div class="CodeMirror-code">\n' +
+        '<div><pre>{<span class="cm-string">&quot;ok&quot;</span>:<span class="cm-atom">true</span>,<span class="cm-string">&quot;channels&quot;</span>:[{<span class="cm-string cm-property">&quot;id&quot;</span>:<span class="cm-string">&quot;CV71L2M2N&quot;</span>,<span class="cm-string cm-property">&quot;name&quot;</span>:<span class="cm-string">&quot;general&quot;</span>,<span class="cm-string cm-property">&quot;is_channel&quot;</span>:<span class="cm-atom">true</span>,<span class="cm-string cm-property">&quot;is_group&quot;</span>:<span class="cm-atom">false</span>,<span class="cm-string cm-property">&quot;is_im&quot;</span>:<span class="cm-atom">false</span>,<span class="cm-string cm-property">&quot;created&quot;</span>:<span class="cm-number">1584454365</span>,<span class="cm-string cm-property">&quot;is_archived&quot;</span>:<span class="cm-atom">false</span>,<span class="cm-string cm-property">&quot;is_general&quot;</span>:<span class="cm-atom">true</span>,<span class="cm-string cm-property">&quot;unlinked&quot;</span>:<span class="cm-number">0</span>,<span class="cm-string cm-property">&quot;name_normalized&quot;</span>:<span class="cm-string">&quot;general&quot;</span>,<span class="cm-string cm-property">&quot;is_shared&quot;</span>:<span class="cm-atom">false</span>,<span class="cm-string cm-property">&quot;parent_conversation&quot;</span>:<span class="cm-atom">null</span>,<span class="cm-string cm-property">&quot;creator&quot;</span>:<span class="cm-string">&quot;U01081GCWCE&quot;</span>,<span class="cm-string cm-property">&quot;is_ext_shared&quot;</span>:<span class="cm-atom">false</span>,<span class="cm-string cm-property">&quot;is_org_shared&quot;</span>:<span class="cm-atom">false</span>,<span class="cm-string cm-property">&quot;shared_team_ids&quot;</span>:[<span class="cm-string">&quot;T01081GCW4E&quot;</span>],<span class="cm-string cm-property">&quot;pending_shared&quot;</span>:[],<span class="cm-string cm-property">&quot;pending_connected_team_ids&quot;</span>:[],<span class="cm-string cm-property">&quot;is_pending_ext_shared&quot;</span>:<span class="cm-atom">false</span>,<span class="cm-string cm-property">&quot;is_member&quot;</span>:<span class="cm-atom">false</span>,<span class="cm-string cm-property">&quot;is_private&quot;</span>:<span class="cm-atom">false</span>,<span class="cm-string cm-property">&quot;is_mpim&quot;</span>:<span class="cm-atom">false</span>,<span class="cm-string cm-property">&quot;topic&quot;</span>:{<span class="cm-string cm-property">&quot;value&quot;</span>:<span class="cm-string">&quot;Company-wide announcements and work-based matters&quot;</span>,<span class="cm-string cm-property">&quot;creator&quot;</span>:<span class="cm-string">&quot;U01081GCWCE&quot;</span>,<span class="cm-string cm-property">&quot;last_set&quot;</span>:<span class="cm-number">1584454365</span>},<span class="cm-string cm-property">&quot;purpose&quot;</span>:{<span class="cm-string cm-property">&quot;value&quot;</span>:<span class="cm-string">&quot;This channel is for workspace-wide communication and announcements. All members are in this channel.&quot;</span>,<span class="cm-string cm-property">&quot;creator&quot;</span>:<span class="cm-string">&quot;U01081GCWCE&quot;</span>,<span class="cm-string cm-property">&quot;last_set&quot;</span>:<span class="cm-number">1584454365</span>},<span class="cm-string cm-property">&quot;previous_names&quot;</span>:[],<span class="cm-string cm-property">&quot;num_members&quot;</span>:<span class="cm-number">3</span>},{<span class="cm-string cm-property">&quot;id&quot;</span>:<span class="cm-string">&quot;CV9NLNDUZ&quot;</span>,<span class="cm-string cm-property">&quot;name&quot;</span>:<span class="cm-string">&quot;slack-integrator&quot;</span>,<span class="cm-string cm-property">&quot;is_channel&quot;</span>:<span class="cm-atom">true</span>,<span class="cm-string cm-property">&quot;is_group&quot;</span>:<span class="cm-atom">false</span>,<span class="cm-string cm-property">&quot;is_im&quot;</span>:<span class="cm-atom">false</span>,<span class="cm-string cm-property">&quot;created&quot;</span>:<span class="cm-number">1584454365</span>,<span class="cm-string cm-property">&quot;is_archived&quot;</span>:<span class="cm-atom">false</span>,<span class="cm-string cm-property">&quot;is_general&quot;</span>:<span class="cm-atom">false</span>,<span class="cm-string cm-property">&quot;unlinked&quot;</span>:<span class="cm-number">0</span>,<span class="cm-string cm-property">&quot;name_normalized&quot;</span>:<span class="cm-string">&quot;slack-integrator&quot;</span>,<span class="cm-string cm-property">&quot;is_shared...</span></pre></div>\n' +
+        '</div>\n' +
+        '</div>\n',
+      lines: 1,
+      lines_more: 0,
+      preview_is_truncated: true,
+      is_starred: false,
+      has_rich_preview: false
+    }
+  ],
+  upload: true,
+  user: 'U0105QV38LQ',
+  display_as_bot: false,
+  ts: '1584569781.001500',
+  client_msg_id: '7bea20a1-0a18-4daa-bb95-721e0ceda06b'
+}
+{
+  client_msg_id: '0dc59b4e-823d-4598-90af-d753c0f7830b',
+  type: 'message',
+  text: '{\n' +
+    '    "_id": {\n' +
+    '        "$oid": "5e72656254f0f1568f39e7a1"\n' +
+    '    },\n' +
+    '    "channel_id": "ABCD",\n' +
+    '    "channel_name": "ido_rubi",\n' +
+    '    "participants_id": ["A1", "B2"],\n' +
+    '    "is_group": false,\n' +
+    '    "is_channel": false,\n' +
+    '    "is_im": true\n' +
+    '}',
+  user: 'U0105BFAEEQ',
+  ts: '1584569710.001400',
+  team: 'T01081GCW4E',
+  blocks: [ { type: 'rich_text', block_id: 'Q8X', elements: [Array] } ]
+}
+{
+  client_msg_id: '15bc2c32-e7b9-43a6-9c78-8d118801844f',
+  type: 'message',
+  text: '{\n' +
+    '    "_id": {\n' +
+    '        "$oid": "5e725c4c54f0f1568f39e79f"\n' +
+    '    },\n' +
+    '    "channel_id": "ABCD",\n' +
+    '    "ts": {\n' +
+    '        "$numberDouble": "11"\n' +
+    '    },\n' +
+    '    "date_time": {\n' +
+    '        "$numberDouble": "11"\n' +
+    '    },\n' +
+    '    "sender_id": "A1",\n' +
+    '    "type": "message",\n' +
+    '    "text": "hello world good"\n' +
+    '}',
+  user: 'U0105BFAEEQ',
+  ts: '1584569589.001200',
+  team: 'T01081GCW4E',
+  blocks: [ { type: 'rich_text', block_id: 'zL2', elements: [Array] } ]
+}
+{
+  client_msg_id: '596bc1d0-75f0-44b9-8f26-775654aa2a47',
+  type: 'message',
+  text: '{\n' +
+    '*ok*: true,\n' +
+    '*channels*: [\n' +
+    '{\n' +
+    '*id*: "CV71L2M2N",\n' +
+    '*name*: "general",\n' +
+    '*is_channel*: true,\n' +
+    '*is_group*: false,\n' +
+    '*is_im*: false,\n' +
+    '*created*: 1584454365,\n' +
+    '*is_archived*: false,\n' +
+    '*is_general*: true,\n' +
+    '*unlinked*: 0,\n' +
+    '*name_normalized*: "general",\n' +
+    '*is_shared*: false,\n' +
+    '*parent_conversation*: null,\n' +
+    '*creator*: "U01081GCWCE",\n' +
+    '*is_ext_shared*: false,\n' +
+    '*is_org_shared*: false,\n' +
+    '*shared_team_ids*: [\n' +
+    '"T01081GCW4E"\n' +
+    '],\n' +
+    '*pending_shared*: [ ],\n' +
+    '*pending_connected_team_ids*: [ ],\n' +
+    '*is_pending_ext_shared*: false,\n' +
+    '*is_member*: false,\n' +
+    '*is_private*: false,\n' +
+    '*is_mpim*: false,\n' +
+    '*topic*: {\n' +
+    '*value*: "Company-wide announcements and work-based matters",\n' +
+    '*creator*: "U01081GCWCE",\n' +
+    '*last_set*: 1584454365\n' +
+    '},\n' +
+    '*purpose*: {\n' +
+    '*value*: "This channel is for workspace-wide communication and announcements. All members are in this channel.",\n' +
+    '*creator*: "U01081GCWCE",\n' +
+    '*last_set*: 1584454365\n' +
+    '},\n' +
+    '*previous_names*: [ ],\n' +
+    '*num_members*: 3\n' +
+    '},\n' +
+    '{\n' +
+    '*id*: "CV9NLNDUZ",\n' +
+    '*name*: "slack-integrator",\n' +
+    '*is_channel*: true,\n' +
+    '*is_group*: false,\n' +
+    '*is_im*: false,\n' +
+    '*created*: 1584454365,\n' +
+    '*is_archived*: false,\n' +
+    '*is_general*: false,\n' +
+    '*unlinked*: 0,\n' +
+    '*name_normalized*: "slack-integrator",\n' +
+    '*is_shared*: false,\n' +
+    '*parent_conversation*: null,\n' +
+    '*creator*: "U01081GCWCE",\n' +
+    '*is_ext_shared*: false,\n' +
+    '*is_org_shared*: false,\n' +
+    '*shared_team_ids*: [\n' +
+    '"T01081GCW4E"\n' +
+    '],\n' +
+    '*pending_shared*: [ ],\n' +
+    '*pending_connected_team_ids*: [ ],\n' +
+    '*is_pending_ext_shared*: false,\n' +
+    '*is_member*: false,\n' +
+    '*is_private*: false,\n' +
+    '*is_mpim*: false,\n' +
+    '*topic*: {\n' +
+    '*value*: "",\n' +
+    '*creator*: "",\n' +
+    '*last_set*: 0\n' +
+    '},\n' +
+    '*purpose*: {\n' +
+    '*value*: "",\n' +
+    '*creator*: "",\n' +
+    '*last_set*: 0\n' +
+    '},\n' +
+    '*previous_names*: [ ],\n' +
+    '*num_members*: 3\n' +
+    '},\n' +
+    '{\n' +
+    '*id*: "C0105BAR8UC",\n' +
+    '*name*: "random",\n' +
+    '*is_channel*: true,\n' +
+    '*is_group*: false,\n' +
+    '*is_im*: false,\n' +
+    '*created*: 1584454365,\n' +
+    '*is_archived*: false,\n' +
+    '*is_general*: false,\n' +
+    '*unlinked*: 0,\n' +
+    '*name_normalized*: "random",\n' +
+    '*is_shared*: false,\n' +
+    '*parent_conversation*: null,\n' +
+    '*creator*: "U01081GCWCE",\n' +
+    '*is_ext_shared*: false,\n' +
+    '*is_org_shared*: false,\n' +
+    '*shared_team_ids*: [\n' +
+    '"T01081GCW4E"\n' +
+    '],\n' +
+    '*pending_shared*: [ ],\n' +
+    '*pending_connected_team_ids*: [ ],\n' +
+    '*is_pending_ext_shared*: false,\n' +
+    '*is_member*: false,\n' +
+    '*is_private*: false,\n' +
+    '*is_mpim*: false,\n' +
+    '*topic*: {\n' +
+    '*value*: "Non-work banter and water cooler conversation",\n' +
+    '*creator*: "U01081GCWCE",\n' +
+    '*last_set*: 1584454365\n' +
+    '},\n' +
+    '*purpose*: {\n' +
+    `*value*: "A place for non-work-related flimflam, faffing, hodge-podge or jibber-jabber you'd prefer to keep out of more focused work-related channels.",\n` +
+    '*creator*: "U01081GCWCE",\n' +
+    '*last_set*: 1584454365\n' +
+    '},\n' +
+    '*previous_names*: [ ],\n' +
+    '*num_members*: 3\n' +
+    '}\n' +
+    '],\n' +
+    '*response_metadata*: {\n' +
+    '*next_cursor*: ""\n' +
+    '}\n' +
+    '}',
+  user: 'U01081GCWCE',
+  ts: '1584569277.000900',
+  team: 'T01081GCW4E',
+  blocks: [ { type: 'rich_text', block_id: 'mxv', elements: [Array] } ]
+}
+{
+  client_msg_id: '5efb9637-e550-4979-8e05-831214574370',
+  type: 'message',
+  text: '{\n' +
+    '• *ok*: true,\n' +
+    '• *channels*: [\n' +
+    '• {\n' +
+    '• *id*: "CV71L2M2N",\n' +
+    '• *name*: "general",\n' +
+    '• *is_channel*: true,\n' +
+    '• *is_group*: false,\n' +
+    '• *is_im*: false,\n' +
+    '• *created*: 1584454365,\n' +
+    '• *is_archived*: false,\n' +
+    '• *is_general*: true,\n' +
+    '• *unlinked*: 0,\n' +
+    '• *name_normalized*: "general",\n' +
+    '• *is_shared*: false,\n' +
+    '• *parent_conversation*: null,\n' +
+    '• *creator*: "U01081GCWCE",\n' +
+    '• *is_ext_shared*: false,\n' +
+    '• *is_org_shared*: false,\n' +
+    '• *shared_team_ids*: [\n' +
+    '• "T01081GCW4E"\n' +
+    '• ],\n' +
+    '• *pending_shared*: [ ],\n' +
+    '• *pending_connected_team_ids*: [ ],\n' +
+    '• *is_pending_ext_shared*: false,\n' +
+    '• *is_member*: false,\n' +
+    '• *is_private*: false,\n' +
+    '• *is_mpim*: false,\n' +
+    '• *topic*: {\n' +
+    '• *value*: "Company-wide announcements and work-based matters",\n' +
+    '• *creator*: "U01081GCWCE",\n' +
+    '• *last_set*: 1584454365\n' +
+    '• },\n' +
+    '• *purpose*: {\n' +
+    '• *value*: "This channel is for workspace-wide communication and announcements. All members are in this channel.",\n' +
+    '• *creator*: "U01081GCWCE",\n' +
+    '• *last_set*: 1584454365\n' +
+    '• },\n' +
+    '• *previous_names*: [ ],\n' +
+    '• *num_members*: 3\n' +
+    '• },\n' +
+    '• {\n' +
+    '• *id*: "CV9NLNDUZ",\n' +
+    '• *name*: "slack-integrator",\n' +
+    '• *is_channel*: true,\n' +
+    '• *is_group*: false,\n' +
+    '• *is_im*: false,\n' +
+    '• *created*: 1584454365,\n' +
+    '• *is_archived*: false,\n' +
+    '• *is_general*: false,\n' +
+    '• *unlinked*: 0,\n' +
+    '• *name_normalized*: "slack-integrator",\n' +
+    '• *is_shared*: false,\n' +
+    '• *parent_conversation*: null,\n' +
+    '• *creator*: "U01081GCWCE",\n' +
+    '• *is_ext_shared*: false,\n' +
+    '• *is_org_shared*: false,\n' +
+    '• *shared_team_ids*: [\n' +
+    '• "T01081GCW4E"\n' +
+    '• ],\n' +
+    '• *pending_shared*: [ ],\n' +
+    '• *pending_connected_team_ids*: [ ],\n' +
+    '• *is_pending_ext_shared*: false,\n' +
+    '• *is_member*: false,\n' +
+    '• *is_private*: false,\n' +
+    '• *is_mpim*: false,\n' +
+    '• *topic*: {\n' +
+    '• *value*: "",\n' +
+    '• *creator*: "",\n' +
+    '• *last_set*: 0\n' +
+    '• },\n' +
+    '• *purpose*: {\n' +
+    '• *value*: "",\n' +
+    '• *creator*: "",\n' +
+    '• *last_set*: 0\n' +
+    '• },\n' +
+    '• *previous_names*: [ ],\n' +
+    '• *num_members*: 3\n' +
+    '• },\n' +
+    '• {\n' +
+    '• *id*: "C0105BAR8UC",\n' +
+    '• *name*: "random",\n' +
+    '• *is_channel*: true,\n' +
+    '• *is_group*: false,\n' +
+    '• *is_im*: false,\n' +
+    '• *created*: 1584454365,\n' +
+    '• *is_archived*: false,\n' +
+    '• *is_general*: false,\n' +
+    '• *unlinked*: 0,\n' +
+    '• *name_normalized*: "random",\n' +
+    '• *is_shared*: false,\n' +
+    '• *parent_conversation*: null,\n' +
+    '• *creator*: "U01081GCWCE",\n' +
+    '• *is_ext_shared*: false,\n' +
+    '• *is_org_shared*: false,\n' +
+    '• *shared_team_ids*: [\n' +
+    '• "T01081GCW4E"\n' +
+    '• ],\n' +
+    '• *pending_shared*: [ ],\n' +
+    '• *pending_connected_team_ids*: [ ],\n' +
+    '• *is_pending_ext_shared*: false,\n' +
+    '• *is_member*: false,\n' +
+    '• *is_private*: false,\n' +
+    '• *is_mpim*: false,\n' +
+    '• *topic*: {\n' +
+    '• *value*: "Non-work banter and water cooler conversation",\n' +
+    '• *creator*: "U01081GCWCE",\n' +
+    '• *last_set*: 1584454365\n' +
+    '• },\n' +
+    '• *purpose*: {\n' +
+    `• *value*: "A place for non-work-related flimflam, faffing, hodge-podge or jibber-jabber you'd prefer to keep out of more focused work-related channels.",\n` +
+    '• *creator*: "U01081GCWCE",\n' +
+    '• *last_set*: 1584454365\n' +
+    '• },\n' +
+    '• *previous_names*: [ ],\n' +
+    '• *num_members*: 3\n' +
+    '• }\n' +
+    '• ],\n' +
+    '• *response_metadata*: {\n' +
+    '• *next_cursor*: ""\n' +
+    '• }\n' +
+    '}',
+  user: 'U01081GCWCE',
+  ts: '1584569257.000700',
+  team: 'T01081GCW4E',
+  blocks: [ { type: 'rich_text', block_id: 'EX9C', elements: [Array] } ]
+}
+{
+  type: 'message',
+  text: '',
+  files: [
+    {
+      id: 'F010A896AG5',
+      created: 1584568597,
+      timestamp: 1584568597,
+      name: 'Screen Shot 2020-03-18 at 23.56.28.png',
+      title: 'Screen Shot 2020-03-18 at 23.56.28.png',
+      mimetype: 'image/png',
+      filetype: 'png',
+      pretty_type: 'PNG',
+      user: 'U0105QV38LQ',
+      editable: false,
+      size: 134941,
+      mode: 'hosted',
+      is_external: false,
+      external_type: '',
+      is_public: true,
+      public_url_shared: false,
+      display_as_bot: false,
+      username: '',
+      url_private: 'https://files.slack.com/files-pri/T01081GCW4E-F010A896AG5/screen_shot_2020-03-18_at_23.56.28.png',
+      url_private_download: 'https://files.slack.com/files-pri/T01081GCW4E-F010A896AG5/download/screen_shot_2020-03-18_at_23.56.28.png',
+      thumb_64: 'https://files.slack.com/files-tmb/T01081GCW4E-F010A896AG5-f57397e60d/screen_shot_2020-03-18_at_23.56.28_64.png',
+      thumb_80: 'https://files.slack.com/files-tmb/T01081GCW4E-F010A896AG5-f57397e60d/screen_shot_2020-03-18_at_23.56.28_80.png',
+      thumb_360: 'https://files.slack.com/files-tmb/T01081GCW4E-F010A896AG5-f57397e60d/screen_shot_2020-03-18_at_23.56.28_360.png',
+      thumb_360_w: 360,
+      thumb_360_h: 153,
+      thumb_480: 'https://files.slack.com/files-tmb/T01081GCW4E-F010A896AG5-f57397e60d/screen_shot_2020-03-18_at_23.56.28_480.png',
+      thumb_480_w: 480,
+      thumb_480_h: 204,
+      thumb_160: 'https://files.slack.com/files-tmb/T01081GCW4E-F010A896AG5-f57397e60d/screen_shot_2020-03-18_at_23.56.28_160.png',
+      thumb_720: 'https://files.slack.com/files-tmb/T01081GCW4E-F010A896AG5-f57397e60d/screen_shot_2020-03-18_at_23.56.28_720.png',
+      thumb_720_w: 720,
+      thumb_720_h: 305,
+      thumb_800: 'https://files.slack.com/files-tmb/T01081GCW4E-F010A896AG5-f57397e60d/screen_shot_2020-03-18_at_23.56.28_800.png',
+      thumb_800_w: 800,
+      thumb_800_h: 339,
+      thumb_960: 'https://files.slack.com/files-tmb/T01081GCW4E-F010A896AG5-f57397e60d/screen_shot_2020-03-18_at_23.56.28_960.png',
+      thumb_960_w: 960,
+      thumb_960_h: 407,
+      thumb_1024: 'https://files.slack.com/files-tmb/T01081GCW4E-F010A896AG5-f57397e60d/screen_shot_2020-03-18_at_23.56.28_1024.png',
+      thumb_1024_w: 1024,
+      thumb_1024_h: 434,
+      image_exif_rotation: 1,
+      original_w: 1344,
+      original_h: 570,
+      thumb_tiny: 'AwAUADDQIGTyfzNGPc8e5pSOTwKTn0FAAODnJ/M0u76UZNLz7CgBNx9qUHP1o59RS0AJtGc0bRS0UAJtFGB6ClooATA9BS4xRRQB/9k=',
+      permalink: 'https://dux-ai.slack.com/files/U0105QV38LQ/F010A896AG5/screen_shot_2020-03-18_at_23.56.28.png',
+      permalink_public: 'https://slack-files.com/T01081GCW4E-F010A896AG5-e927955f72',
+      is_starred: false,
+      has_rich_preview: false
+    }
+  ],
+  upload: true,
+  user: 'U0105QV38LQ',
+  display_as_bot: false,
+  ts: '1584568603.000300',
+  client_msg_id: '65fb0fc0-5a6b-4486-ae0f-c54dfa24d4aa'
+}
+{
+  client_msg_id: 'dbab8575-7516-4913-b107-deccc0f95b35',
+  type: 'message',
+  text: '```GET /api/channels.history?token=TOKEN_WITH_CHANNELS_HISTORY_SCOPE&amp;channel=C2EB2QT8A&amp;latest=1476909142.000007&amp;inclusive=true&amp;limit=1```\n',
+  user: 'U0105QV38LQ',
+  ts: '1584568347.000200',
+  team: 'T01081GCW4E',
+  blocks: [ { type: 'rich_text', block_id: '12oc', elements: [Array] } ]
+}
+{
+  type: 'message',
+  text: 'ID Log of messages',
+  files: [
+    {
+      id: 'FVBJBRWE7',
+      created: 1584545027,
+      timestamp: 1584545027,
+      name: 'messages.json',
+      title: 'messages.json',
+      mimetype: 'text/plain',
+      filetype: 'javascript',
+      pretty_type: 'JavaScript/JSON',
+      user: 'U0105QV38LQ',
+      editable: true,
+      size: 2971,
+      mode: 'snippet',
+      is_external: false,
+      external_type: '',
+      is_public: true,
+      public_url_shared: false,
+      display_as_bot: false,
+      username: '',
+      url_private: 'https://files.slack.com/files-pri/T01081GCW4E-FVBJBRWE7/messages.json',
+      url_private_download: 'https://files.slack.com/files-pri/T01081GCW4E-FVBJBRWE7/download/messages.json',
+      permalink: 'https://dux-ai.slack.com/files/U0105QV38LQ/FVBJBRWE7/messages.json',
+      permalink_public: 'https://slack-files.com/T01081GCW4E-FVBJBRWE7-ac133f67c4',
+      edit_link: 'https://dux-ai.slack.com/files/U0105QV38LQ/FVBJBRWE7/messages.json/edit',
+      preview: '[\n' +
+        '  {\n' +
+        '    "user": "USERID",\n' +
+        '    "type": "message",\n' +
+        '    "subtype": "channel_join",',
+      preview_highlight: `<div class="CodeMirror cm-s-default CodeMirrorServer" oncopy="if(event.clipboardData){event.clipboardData.setData('text/plain',window.getSelection().toString().replace(/\\u200b/g,''));event.preventDefault();event.stopPropagation();}">\n` +
+        '<div class="CodeMirror-code">\n' +
+        '<div><pre>[</pre></div>\n' +
+        '<div><pre>  {</pre></div>\n' +
+        '<div><pre>    <span class="cm-string cm-property">&quot;user&quot;</span>: <span class="cm-string">&quot;USERID&quot;</span>,</pre></div>\n' +
+        '<div><pre>    <span class="cm-string cm-property">&quot;type&quot;</span>: <span class="cm-string">&quot;message&quot;</span>,</pre></div>\n' +
+        '<div><pre>    <span class="cm-string cm-property">&quot;subtype&quot;</span>: <span class="cm-string">&quot;channel_join&quot;</span>,</pre></div>\n' +
+        '</div>\n' +
+        '</div>\n',
+      lines: 120,
+      lines_more: 115,
+      preview_is_truncated: true,
+      is_starred: false,
+      has_rich_preview: false
+    }
+  ],
+  upload: true,
+  blocks: [ { type: 'rich_text', block_id: 'zga1', elements: [Array] } ],
+  user: 'U0105QV38LQ',
+  display_as_bot: false,
+  ts: '1584545028.001100',
+  client_msg_id: '3c3d7f04-0c45-43d8-8e9a-26cc7ad144ba'
+}
+{
+  type: 'message',
+  text: 'ID Log of 2 Users',
+  files: [
+    {
+      id: 'F01092FC4TS',
+      created: 1584544884,
+      timestamp: 1584544884,
+      name: 'users.json',
+      title: 'users.json',
+      mimetype: 'text/plain',
+      filetype: 'javascript',
+      pretty_type: 'JavaScript/JSON',
+      user: 'U0105QV38LQ',
+      editable: true,
+      size: 3058,
+      mode: 'snippet',
+      is_external: false,
+      external_type: '',
+      is_public: true,
+      public_url_shared: false,
+      display_as_bot: false,
+      username: '',
+      url_private: 'https://files.slack.com/files-pri/T01081GCW4E-F01092FC4TS/users.json',
+      url_private_download: 'https://files.slack.com/files-pri/T01081GCW4E-F01092FC4TS/download/users.json',
+      permalink: 'https://dux-ai.slack.com/files/U0105QV38LQ/F01092FC4TS/users.json',
+      permalink_public: 'https://slack-files.com/T01081GCW4E-F01092FC4TS-1f29ddc48d',
+      edit_link: 'https://dux-ai.slack.com/files/U0105QV38LQ/F01092FC4TS/users.json/edit',
+      preview: '[\n  {\n    "id": "USERID",\n    "team_id": "TEAMID",\n    "name": "test",',
+      preview_highlight: `<div class="CodeMirror cm-s-default CodeMirrorServer" oncopy="if(event.clipboardData){event.clipboardData.setData('text/plain',window.getSelection().toString().replace(/\\u200b/g,''));event.preventDefault();event.stopPropagation();}">\n` +
+        '<div class="CodeMirror-code">\n' +
+        '<div><pre>[</pre></div>\n' +
+        '<div><pre>  {</pre></div>\n' +
+        '<div><pre>    <span class="cm-string cm-property">&quot;id&quot;</span>: <span class="cm-string">&quot;USERID&quot;</span>,</pre></div>\n' +
+        '<div><pre>    <span class="cm-string cm-property">&quot;team_id&quot;</span>: <span class="cm-string">&quot;TEAMID&quot;</span>,</pre></div>\n' +
+        '<div><pre>    <span class="cm-string cm-property">&quot;name&quot;</span>: <span class="cm-string">&quot;test&quot;</span>,</pre></div>\n' +
+        '</div>\n' +
+        '</div>\n',
+      lines: 99,
+      lines_more: 94,
+      preview_is_truncated: true,
+      is_starred: false,
+      has_rich_preview: false
+    }
+  ],
+  upload: true,
+  blocks: [ { type: 'rich_text', block_id: 'ihv', elements: [Array] } ],
+  user: 'U0105QV38LQ',
+  display_as_bot: false,
+  ts: '1584544885.000800',
+  client_msg_id: 'a4cabd63-ac04-4830-863a-7f65b1051a1d'
+}
+{
+  type: 'message',
+  text: 'ID Log off Channel',
+  files: [
+    {
+      id: 'F0108JDSW76',
+      created: 1584544849,
+      timestamp: 1584544849,
+      name: 'channels.json',
+      title: 'channels.json',
+      mimetype: 'text/plain',
+      filetype: 'javascript',
+      pretty_type: 'JavaScript/JSON',
+      user: 'U0105QV38LQ',
+      editable: true,
+      size: 585,
+      mode: 'snippet',
+      is_external: false,
+      external_type: '',
+      is_public: true,
+      public_url_shared: false,
+      display_as_bot: false,
+      username: '',
+      url_private: 'https://files.slack.com/files-pri/T01081GCW4E-F0108JDSW76/channels.json',
+      url_private_download: 'https://files.slack.com/files-pri/T01081GCW4E-F0108JDSW76/download/channels.json',
+      permalink: 'https://dux-ai.slack.com/files/U0105QV38LQ/F0108JDSW76/channels.json',
+      permalink_public: 'https://slack-files.com/T01081GCW4E-F0108JDSW76-11e1f7bd30',
+      edit_link: 'https://dux-ai.slack.com/files/U0105QV38LQ/F0108JDSW76/channels.json/edit',
+      preview: '[\n' +
+        '  {\n' +
+        '    "id": "CHANNELID",\n' +
+        '    "name": "general",\n' +
+        '    "created": "1524799526",',
+      preview_highlight: `<div class="CodeMirror cm-s-default CodeMirrorServer" oncopy="if(event.clipboardData){event.clipboardData.setData('text/plain',window.getSelection().toString().replace(/\\u200b/g,''));event.preventDefault();event.stopPropagation();}">\n` +
+        '<div class="CodeMirror-code">\n' +
+        '<div><pre>[</pre></div>\n' +
+        '<div><pre>  {</pre></div>\n' +
+        '<div><pre>    <span class="cm-string cm-property">&quot;id&quot;</span>: <span class="cm-string">&quot;CHANNELID&quot;</span>,</pre></div>\n' +
+        '<div><pre>    <span class="cm-string cm-property">&quot;name&quot;</span>: <span class="cm-string">&quot;general&quot;</span>,</pre></div>\n' +
+        '<div><pre>    <span class="cm-string cm-property">&quot;created&quot;</span>: <span class="cm-string">&quot;1524799526&quot;</span>,</pre></div>\n' +
+        '</div>\n' +
+        '</div>\n',
+      lines: 32,
+      lines_more: 27,
+      preview_is_truncated: false,
+      is_starred: false,
+      has_rich_preview: false
+    }
+  ],
+  upload: true,
+  blocks: [ { type: 'rich_text', block_id: 'Etpeq', elements: [Array] } ],
+  user: 'U0105QV38LQ',
+  display_as_bot: false,
+  ts: '1584544851.000500',
+  client_msg_id: '9fef5784-d4d9-45a7-96e9-7d9c248df2ea'
+}
+{
+  client_msg_id: '2421eecb-0dd7-46fd-bc79-519a94a416b9',
+  type: 'message',
+  text: 'few logs iles',
+  user: 'U0105QV38LQ',
+  ts: '1584544823.000400',
+  team: 'T01081GCW4E',
+  blocks: [ { type: 'rich_text', block_id: '9n4h', elements: [Array] } ]
+}
+{
+  client_msg_id: 'e06c8c79-74e9-49c2-b130-4e862b56dd66',
+  type: 'message',
+  text: 'Hi',
+  user: 'U0105QV38LQ',
+  ts: '1584544818.000200',
+  team: 'T01081GCW4E',
+  blocks: [ { type: 'rich_text', block_id: 'r1p', elements: [Array] } ]
+}
+{
+  client_msg_id: '91bb91d1-fe7e-45b6-a466-5958f46c9de0',
+  type: 'message',
+  text: 'Hola',
+  user: 'U0105QV38LQ',
+  ts: '1584456277.000900',
+  team: 'T01081GCW4E',
+  blocks: [ { type: 'rich_text', block_id: 'xcFW', elements: [Array] } ]
+}
+{
+  type: 'message',
+  subtype: 'channel_join',
+  ts: '1584456226.000800',
+  user: 'U0105QV38LQ',
+  text: '<@U0105QV38LQ> has joined the channel'
+}
+{
+  client_msg_id: 'c09cf9e5-96e9-4e6b-b002-d18fbd65e1d1',
+  type: 'message',
+  text: 'good',
+  user: 'U0105BFAEEQ',
+  ts: '1584455818.000700',
+  team: 'T01081GCW4E',
+  blocks: [ { type: 'rich_text', block_id: 'ukVk', elements: [Array] } ]
+}
+{
+  type: 'message',
+  subtype: 'channel_join',
+  ts: '1584455781.000600',
+  user: 'U0105BFAEEQ',
+  text: '<@U0105BFAEEQ> has joined the channel'
+}
+{
+  client_msg_id: 'd3abf6df-2021-4a82-94a3-f69cd2b462e3',
+  type: 'message',
+  text: ':wave:️ Put daily updates here! I’ll start…',
+  user: 'U01081GCWCE',
+  ts: '1584454645.000500',
+  team: 'T01081GCW4E',
+  blocks: [ { type: 'rich_text', block_id: '9PqCy', elements: [Array] } ]
+}
+{
+  type: 'message',
+  subtype: 'channel_join',
+  ts: '1584454365.000200',
+  user: 'U01081GCWCE',
+  text: '<@U01081GCWCE> has joined the channel'
+}
+{
+  id: 'C0105BAR8UC',
+  name: 'random',
+  is_channel: true,
+  is_group: false,
+  is_im: false,
+  created: 1584454365,
+  is_archived: false,
+  is_general: false,
+  unlinked: 0,
+  name_normalized: 'random',
+  is_shared: false,
+  parent_conversation: null,
+  creator: 'U01081GCWCE',
+  is_ext_shared: false,
+  is_org_shared: false,
+  shared_team_ids: [ 'T01081GCW4E' ],
+  pending_shared: [],
+  pending_connected_team_ids: [],
+  is_pending_ext_shared: false,
+  is_member: true,
+  is_private: false,
+  is_mpim: false,
+  topic: {
+    value: 'Non-work banter and water cooler conversation',
+    creator: 'U01081GCWCE',
+    last_set: 1584454365
+  },
+  purpose: {
+    value: "A place for non-work-related flimflam, faffing, hodge-podge or jibber-jabber you'd prefer to keep out of more focused work-related channels.",
+    creator: 'U01081GCWCE',
+    last_set: 1584454365
+  },
+  previous_names: [],
+  num_members: 3
+}
+{
+  client_msg_id: '363d7c46-1d97-409f-a54c-8dc443308c6f',
+  type: 'message',
+  text: 'Test Random',
+  user: 'U0105QV38LQ',
+  ts: '1584568089.000200',
+  team: 'T01081GCW4E',
+  blocks: [ { type: 'rich_text', block_id: '8aKHO', elements: [Array] } ]
+}
+{
+  client_msg_id: 'fcc5cc12-5fc4-4741-8aee-1d16437d46af',
+  type: 'message',
+  text: 'very ranndom',
+  user: 'U0105QV38LQ',
+  ts: '1584541800.000200',
+  team: 'T01081GCW4E',
+  blocks: [ { type: 'rich_text', block_id: 'uxHE', elements: [Array] } ]
+}
+{
+  type: 'message',
+  subtype: 'channel_join',
+  ts: '1584456226.000600',
+  user: 'U0105QV38LQ',
+  text: '<@U0105QV38LQ> has joined the channel'
+}
+{
+  type: 'message',
+  subtype: 'channel_join',
+  ts: '1584455781.000500',
+  user: 'U0105BFAEEQ',
+  text: '<@U0105BFAEEQ> has joined the channel'
+}
+{
+  type: 'message',
+  subtype: 'channel_join',
+  ts: '1584454365.000200',
+  user: 'U01081GCWCE',
+  text: '<@U01081GCWCE> has joined the channel'
+}
+{
+  id: 'D010A51TRRC',
+  created: 1584517867,
+  is_archived: false,
+  is_im: true,
+  is_org_shared: false,
+  user: 'U0107U9USRE',
+  is_user_deleted: false,
+  priority: 0
+}
+{
+  id: 'D0107LQLS2K',
+  created: 1584454364,
+  is_archived: false,
+  is_im: true,
+  is_org_shared: false,
+  user: 'USLACKBOT',
+  is_user_deleted: false,
+  priority: 0
+}
+{
+  id: 'D0105BFAXBN',
+  created: 1584454449,
+  is_archived: false,
+  is_im: true,
+  is_org_shared: false,
+  user: 'U0105BFAEEQ',
+  is_user_deleted: false,
+  priority: 0
+}
+{
+  client_msg_id: '41905843-2132-4d42-b959-0f093e52fd35',
+  type: 'message',
+  text: 'Good',
+  user: 'U0105BFAEEQ',
+  ts: '1584568167.000200',
+  team: 'T01081GCW4E',
+  blocks: [ { type: 'rich_text', block_id: '6FBcx', elements: [Array] } ]
+}
+{
+  id: 'DV9NR8UPK',
+  created: 1584454449,
+  is_archived: false,
+  is_im: true,
+  is_org_shared: false,
+  user: 'U0105QV38LQ',
+  is_user_deleted: false,
+  priority: 0
+}
+{
+  client_msg_id: 'fa81af3d-4c46-45f8-95f1-36917a14d4fc',
+  type: 'message',
+  text: 'Corvid 19',
+  user: 'U0105QV38LQ',
+  ts: '1584568069.001000',
+  team: 'T01081GCW4E',
+  blocks: [ { type: 'rich_text', block_id: '5Zy', elements: [Array] } ]
+}
+{
+  client_msg_id: 'd2832c79-a827-403b-b739-ee347ed38ca6',
+  type: 'message',
+  text: 'Hell World',
+  user: 'U0105QV38LQ',
+  ts: '1584568051.000700',
+  team: 'T01081GCW4E',
+  blocks: [ { type: 'rich_text', block_id: '4XW05', elements: [Array] } ]
+}
+{
+  client_msg_id: '01cc2cb1-4b1d-4e2a-8ce9-64538cb54ed4',
+  type: 'message',
+  text: 'Hi',
+  user: 'U0105QV38LQ',
+  ts: '1584568044.000300',
+  team: 'T01081GCW4E',
+  blocks: [ { type: 'rich_text', block_id: 'qnNR', elements: [Array] } ]
+}
+{
+  id: 'DV8GJP3DH',
+  created: 1584457685,
+  is_archived: false,
+  is_im: true,
+  is_org_shared: false,
+  user: 'UV8GJNWAX',
+  is_user_deleted: false,
+  priority: 0
+}
+{
+  id: 'DV8AZ0Z19',
+  created: 1584454364,
+  is_archived: false,
+  is_im: true,
+  is_org_shared: false,
+  user: 'U01081GCWCE',
+  is_user_deleted: false,
+  priority: 0
+}

@@ -1,0 +1,37 @@
+{
+    ok: true,
+    channels: 
+    [ 
+        {
+        id: "CV71L2M2N", STRING Format = "channel_id" parameter name @ MongoDB
+        name: "general", STRING Format = "channel_name" parameter name @ MongoDB
+        is_channel: true,  BOOLEAN (FLAG) Format = "is_chanel" parameter name @ MongoDB
+        is_group: false, BOOLEAN (FLAG) Format = "is_group" parameter name @ MongoDB
+        is_im: false, BOOLEAN (FLAG) Format = "is_im" parameter name @ MongoDB
+        created: 1584454365, ? I think it's the ts of the creation of log file & not creation of group ?
+        creator: "U01081GCWCE", LIST OF STRING Format = "participant_0_id" parameter name @ MongoDB -> ? Probebly the user_id of the creator of the team/channel ?
+        shared_team_ids: [ "T01081GCW4E" ], STRING Format = "team_id" parameter name @ MongoDB
+        pending_connected_team_ids: [ ], Maybe here should be all participants ? NOT RELEVANT ?
+        topic: 
+            {
+            value: "Company-wide announcements and work-based matters",  STRING Format = "channel_topic" parameter name @ MongoDB
+            },
+            purpose: 
+            {
+            value: "This channel is for workspace-wide communication and announcements. All members are in this channel.",  STRING Format = "channel_purpose" parameter name @ MongoDB
+            },
+        previous_names: [ ],
+        num_members: 3 INT Format = "participants_sum" parameter name @ MongoDB
+        }
+
+MongoDB slack.channels Format:
+    "channel_id" = STRING Format
+    "channel_name" = STRING Format
+    "is_chanel" = BOOLEAN (FLAG) Format
+    "is_group" = BOOLEAN (FLAG) Format
+    "is_im" = BOOLEAN (FLAG) Format
+    "participant_0_id" = STRING Format
+    "team_id" = STRING Format
+    "channel_topic" = STRING Format
+    "channel_purpose" = STRING Format
+    "participants_sum" = INT Format

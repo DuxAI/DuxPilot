@@ -1,0 +1,70 @@
+//Original
+
+[
+    {
+        "client_msg_id": "fa81af3d-4c46-45f8-95f1-36917a14d4fc",
+        "type": "message",
+        "text": "Corvid 19",
+        "user": "U0105QV38LQ",
+        "ts": "1584568069.001000",
+        "team": "T01081GCW4E",
+        "blocks": [
+            {
+                "type": "rich_text",
+                "block_id": "5Zy",
+                "elements": [
+                    {
+                        "type": "rich_text_section",
+                        "elements": [
+                            {
+                                "type": "text",
+                                "text": "Corvid 19"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+    },
+]
+
+
+MongoDB slack.msg Format:
+    "type" = STRING Format
+    "text" = STRING Format
+    "user_id" = STRING Format
+    "channel_id" = STRING Format
+    "team_id" = STRING Format
+    "ts" = STRING Format
+    "time_stamp" = INT 64 Format
+
+//After REGEX
+
+[
+    {
+        //"client_msg_id": "fa81af3d-4c46-45f8-95f1-36917a14d4fc",
+        "type": "message", STRING Format = "type" parameter name @ MongoDB
+        "text": "Corvid 19", STRING Format = "text" parameter name @ MongoDB
+        "user": "U0105QV38LQ", STRING Format = "user" parameter name @ MongoDB NEED to name
+        "ts": "1584568069.001000", STRING Format = "ts" parameter name @ MongoDB NEED to add type
+        "team": "T01081GCW4E",  STRING Format = "team" parameter name @ MongoDB - NEED to add
+/*        "blocks": [
+            {
+                "type": "rich_text",
+                "block_id": "5Zy",
+                "elements": [
+                    {
+                        "type": "rich_text_section",
+                        "elements": [
+                            {
+                                "type": "text",
+                                "text": "Corvid 19"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+    },
+]
+*/
