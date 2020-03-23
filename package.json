@@ -4,13 +4,31 @@
   "description": "",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start-dev": "source dev.env; node server.js",
+    "start-prod": "source prod.env; node server.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@slack/web-api": "^5.8.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "request": "^2.88.0"
+    "mongoose": "^5.9.5",
+    "mongoose-double": "0.0.1",
+    "mongoose-int32": "^0.3.1",
+    "reflect-metadata": "^0.1.13",
+    "request": "^2.88.0",
+    "slack": "^11.0.2",
+    "ts-node": "^8.6.2",
+    "typescript": "^3.8.3",
+    "winston": "^3.2.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.7",
+    "@babel/preset-env": "^7.8.7",
+    "@babel/register": "^7.8.6",
+    "@types/express": "^4.17.3",
+    "@types/request": "^2.48.4"
   }
 }
