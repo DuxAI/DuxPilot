@@ -17,10 +17,8 @@ var mongoose = require('mongoose');
 const UserSchema = mongoose.Schema({
         user_id: String,
         user_name: String,
-        name: String,
-        second_name: String,
-        channel_id_list: Array,
-        team_id_list: Array
+        real_name: String,
+        team_id: String
 }, { versionKey: false });
 
 /**

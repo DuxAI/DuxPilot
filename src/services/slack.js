@@ -1,4 +1,5 @@
 require("dotenv").config();
+const connection = require ("../db/mongoose")
 const {Channel, Msg, User }= require("../models")
 const { WebClient } = require('@slack/web-api');
 const qs = require("querystring");
@@ -18,6 +19,7 @@ async function getSlackAccessToken(code) {
         code: code
     });
 
+    connection();
     //posting the client_id, client_secret and auth code to slack api.
     const result = await axios.post(url, data, headers);
     return result.data.authed_user.access_token;
@@ -25,16 +27,19 @@ async function getSlackAccessToken(code) {
 
 async function saveNewSlackUserToDB(user) {
     const userToSave = new User({
-        user_id: puser.id,
-        user_name: puser.name,
-        real_name: puser.real_name,
-        team_id: puser.team_id
+        user_id: user.id,
+        user_name: user.name,
+        real_name: user.real_name,
+        team_id: user.team_id
     })
 
-    await userToSave.save(function (err, user) {
-        if (err) return console.error(err);
-        console.log(user.name + " saved to channels collection.");
-    });
+    await User.updateOne(
+        {user_id: user.id}, 
+        {$setOnInsert: userToSave}, 
+        {upsert: true}, 
+        function (err, user) {
+            if (err) return console.error(err);
+        })
 }
 
 
@@ -60,10 +65,13 @@ async function saveNewChannelToDB(channel) {
         channel_purpose: channel.purpose.value,
         participants_sum: channel.num_members
     });
-    await channelToSave.save(function (err, channel) {
-        if (err) return console.error(err);
-        console.log(channel.name + " saved to channels collection.");
-    });
+    await Channel.updateOne(
+        {channel_id: channel.id}, 
+        {$setOnInsert: channelToSave}, 
+        {upsert: true}, 
+        function (err, channel) {
+            if (err) return console.error(err);
+        })
 }
 
 async function saveChannelAndMsgsFromSlack(access_token) {
@@ -74,12 +82,15 @@ async function saveChannelAndMsgsFromSlack(access_token) {
             if (channel.hasOwnProperty('purpose')) {
                 saveNewChannelToDB(channel)
             }
+            saveMsgsFromChannel(slackWebClient, channel)
         }
-        saveMsgsFromChannel(slackWebClient, channel)
+       
     }
 }
 
 async function saveNewMsgToDB(message, channel) {
+    
+
     const msgToSave = new Msg({
         channel_id: channel.id,
         user_id: message.user,
@@ -88,11 +99,13 @@ async function saveNewMsgToDB(message, channel) {
         ts: message.ts,
         team: message.team
     });
-
-    await msgToSave.save(function (err, msg) {
-        if (err) return console.error(err);
-        console.log(msg.name + " saved to msg collection.");
-    });
+    await Msg.updateOne(
+        {ts: message.ts}, 
+        {$setOnInsert: msgToSave}, 
+        {upsert: true}, 
+        function (err, msg) {
+            if (err) return console.error(err);
+        })
 }
 async function saveMsgsFromChannel(slackWebClient, channel) {
     for await (const pMessages of slackWebClient.paginate('conversations.history', { channel: channel.id })) {

@@ -1,15 +1,14 @@
 const path = require('path')
+const connectToDB = require("./db/mongoose")
 const express = require('express')
 const slack = require("./routes/slack")
 require('dotenv').config({ path: path.join(__dirname, '.env') });
+global.db = connectToDB();
 
 const app = express()
 const port = 3000
 
 
-app.get('/test', (req, res) => {
-    res.sendFile(__dirname + '/add_to_slack.html')
-})
 app.use('/slack', slack);
 
 
