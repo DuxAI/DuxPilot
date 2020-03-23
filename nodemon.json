@@ -1,0 +1,11 @@
+{
+    "watch": [
+      "src",
+      ".env"
+    ],
+    "ext": "js,ts,json",
+    "ignore": [
+      "src/**/*.spec.ts"
+    ],
+    "exec": "source /Users/anatbalzam/Desktop/DuxPilot/src/.env; ts-node  --transpile-only ./src/app.ts"
+  }
