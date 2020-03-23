@@ -1,10 +1,10 @@
 require("dotenv").config();
-const connection = require ("../db/mongoose")
-const {Channel, Msg, User }= require("../models")
+const {Channel, Msg, User, UserToken }= require("../models")
 const { WebClient } = require('@slack/web-api');
 const qs = require("querystring");
 const axios = require("axios");
 const url = "https://slack.com/api/oauth.v2.access";
+
 
 async function getSlackAccessToken(code) {
     const headers = {
@@ -19,11 +19,31 @@ async function getSlackAccessToken(code) {
         code: code
     });
 
-    connection();
+
     //posting the client_id, client_secret and auth code to slack api.
     const result = await axios.post(url, data, headers);
+    saveUserTokenToDB(result.data.authed_user); // TODO; need to encrypt access_token here
     return result.data.authed_user.access_token;
 }
+
+
+
+async function saveUserTokenToDB(tokenData) {
+    const tokenToSave = new UserToken({
+        user_id: tokenData.id,
+        user_scope: tokenData.scope,
+        token: tokenData.access_token
+    })
+    await UserToken.updateOne(
+        {user_id: tokenData.id}, 
+        {$setOnInsert: tokenToSave}, 
+        {upsert: true}, 
+        function (err, usertoken) {
+            if (err) return console.error(err);
+        })
+}
+
+
 
 async function saveNewSlackUserToDB(user) {
     const userToSave = new User({
