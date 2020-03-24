@@ -1,9 +1,5 @@
 require("dotenv").config();
-<<<<<<< HEAD
-const { Channel, Msg, User, UserToken, IM } = require("../models")
-=======
 const {Channel, Msg, User, UserToken, IM }= require("../models")
->>>>>>> f6d7b54589797d8073b18347b61a7c04dc56601b
 const { WebClient } = require('@slack/web-api');
 const { createEventAdapter } = require('@slack/events-api');
 const qs = require("querystring");
