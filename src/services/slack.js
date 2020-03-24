@@ -1,5 +1,9 @@
 require("dotenv").config();
-const { Channel, Msg, User, UserToken } = require("../models")
+<<<<<<< HEAD
+const { Channel, Msg, User, UserToken, IM } = require("../models")
+=======
+const {Channel, Msg, User, UserToken, IM }= require("../models")
+>>>>>>> f6d7b54589797d8073b18347b61a7c04dc56601b
 const { WebClient } = require('@slack/web-api');
 const { createEventAdapter } = require('@slack/events-api');
 const qs = require("querystring");
@@ -66,6 +70,21 @@ async function saveUserTokenToDB(tokenData) {
 
 
 
+async function saveIMToDB(im) {
+    const IMToInsert = new IM({
+        im_id: im.id,
+        im_user: im.user
+    })
+    await IM.updateOne(
+        {im_id: im.id}, 
+        {$setOnInsert: IMToInsert}, 
+        {upsert: true}, 
+        function (err, im) {
+            if (err) return console.error(err);
+        })
+}
+
+
 async function saveNewSlackUserToDB(user) {
     const userToSave = new User({
         user_id: user.id,
@@ -120,8 +139,12 @@ async function saveChannelAndMsgsFromSlack(access_token) {
     const types = 'public_channel,private_channel,mpim,im';
     for await (const pChannels of slackWebClient.paginate('conversations.list', { types })) {
         for (const channel of pChannels.channels) {
+            console.log(channel);
             if (channel.hasOwnProperty('purpose')) {
                 saveNewChannelToDB(channel)
+            }
+            else {
+                saveIMToDB(channel)
             }
             saveMsgsFromChannel(slackWebClient, channel)
         }
