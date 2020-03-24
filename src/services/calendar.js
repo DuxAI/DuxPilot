@@ -1,5 +1,5 @@
 require("dotenv").config();
-const { Calender }= require("../models");
+const { Calendar }= require("../models");
 const { google } = require('googleapis')
 // Require oAuth2 from our google instance.
 const { OAuth2 } = google.auth
@@ -9,7 +9,7 @@ const oAuth2Client = new OAuth2(
     process.env.GOOGLE_SECRET_KEY
 );
 
-async function saveCalenderData(token) {
+async function saveCalendarData(token) {
     try {
         oAuth2Client.setCredentials({
             refresh_token:token
@@ -49,7 +49,7 @@ async function saveCalenderData(token) {
                         });
                     }
                    
-                    await Calender.bulkWrite(finalArr, { ordered: true });
+                    await Calendar.bulkWrite(finalArr, { ordered: true });
                     return true;
                 } else {
                     return console.error(err);
@@ -61,7 +61,7 @@ async function saveCalenderData(token) {
     }
 }
 
-module.exports = { saveCalenderData }
+module.exports = { saveCalendarData }
 
 
 
