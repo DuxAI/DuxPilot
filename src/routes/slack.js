@@ -1,5 +1,8 @@
 const router = require("express").Router();
-const { getSlackAccessToken, saveUsersFromSlack, saveChannelAndMsgsFromSlack } = require("../services/slack");
+const { getSlackAccessToken, saveUsersFromSlack, saveChannelAndMsgsFromSlack , listenerMsg} = require("../services/slack");
+
+
+router.get('/events',listenerMsg)
 
 
 router.get("/", async (req, res) => {
@@ -23,6 +26,7 @@ router.get("/auth", async (req, res) => {
     }
 }
 );
+
 
 
 module.exports = router;

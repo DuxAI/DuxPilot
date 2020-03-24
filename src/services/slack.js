@@ -1,9 +1,30 @@
 require("dotenv").config();
-const {Channel, Msg, User, UserToken }= require("../models")
+const { Channel, Msg, User, UserToken } = require("../models")
 const { WebClient } = require('@slack/web-api');
+const { createEventAdapter } = require('@slack/events-api');
 const qs = require("querystring");
 const axios = require("axios");
 const url = "https://slack.com/api/oauth.v2.access";
+
+
+
+async function listenerMsg() {
+    // Read the signing secret from the environment variables
+    const slackSigningSecret = process.env.SLACK_SIGNING_SECRET;
+
+    // Initialize
+    const slackEvents = createEventAdapter(slackSigningSecret);
+    slackEvents.on('message', (message, body) => {
+          // Handle initialization failure
+          console.log(message, body)
+          saveNewMsgToDB(message,message.channel)
+        }
+      );
+    }
+
+
+
+
 
 
 async function getSlackAccessToken(code) {
@@ -35,9 +56,9 @@ async function saveUserTokenToDB(tokenData) {
         token: tokenData.access_token
     })
     await UserToken.updateOne(
-        {user_id: tokenData.id}, 
-        {$setOnInsert: tokenToSave}, 
-        {upsert: true}, 
+        { user_id: tokenData.id },
+        { $setOnInsert: tokenToSave },
+        { upsert: true },
         function (err, usertoken) {
             if (err) return console.error(err);
         })
@@ -54,9 +75,9 @@ async function saveNewSlackUserToDB(user) {
     })
 
     await User.updateOne(
-        {user_id: user.id}, 
-        {$setOnInsert: userToSave}, 
-        {upsert: true}, 
+        { user_id: user.id },
+        { $setOnInsert: userToSave },
+        { upsert: true },
         function (err, user) {
             if (err) return console.error(err);
         })
@@ -86,9 +107,9 @@ async function saveNewChannelToDB(channel) {
         participants_sum: channel.num_members
     });
     await Channel.updateOne(
-        {channel_id: channel.id}, 
-        {$setOnInsert: channelToSave}, 
-        {upsert: true}, 
+        { channel_id: channel.id },
+        { $setOnInsert: channelToSave },
+        { upsert: true },
         function (err, channel) {
             if (err) return console.error(err);
         })
@@ -104,12 +125,12 @@ async function saveChannelAndMsgsFromSlack(access_token) {
             }
             saveMsgsFromChannel(slackWebClient, channel)
         }
-       
+
     }
 }
 
 async function saveNewMsgToDB(message, channel) {
-    
+
 
     const msgToSave = new Msg({
         channel_id: channel.id,
@@ -119,10 +140,11 @@ async function saveNewMsgToDB(message, channel) {
         ts: message.ts,
         team: message.team
     });
-    await Msg.updateOne(
-        {ts: message.ts}, 
-        {$setOnInsert: msgToSave}, 
-        {upsert: true}, 
+    console.log("I'm here")
+    await Msg.update(
+        { ts: message.ts },
+        { $setOnInsert: msgToSave },
+        { upsert: true },
         function (err, msg) {
             if (err) return console.error(err);
         })
@@ -135,7 +157,8 @@ async function saveMsgsFromChannel(slackWebClient, channel) {
     }
 }
 
-module.exports = {getSlackAccessToken, saveChannelAndMsgsFromSlack, saveUsersFromSlack }
+
+module.exports = { getSlackAccessToken, saveChannelAndMsgsFromSlack, saveUsersFromSlack , listenerMsg}
 
 
 
