@@ -14,7 +14,7 @@ var mongoose = require('mongoose');
  *
  * @type {mongoose.Schema}
  */
-const CalenderSchema = mongoose.Schema({
+const CalendarSchema = mongoose.Schema({
     _id: { type: mongoose.Types.ObjectId, required: true, auto: true },
     kind: { type: String, default: "" },
     etag: { type: String, default: "" },
@@ -55,6 +55,6 @@ const CalenderSchema = mongoose.Schema({
  *
  * @type {mongoose.Model}
  */
-const Calender = mongoose.model('calenders', CalenderSchema)
+const Calendar = mongoose.model('calenders', CalendarSchema)
 
-module.exports = Calender;
+module.exports = Calendar;
