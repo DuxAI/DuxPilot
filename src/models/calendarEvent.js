@@ -6,6 +6,8 @@
 
 var mongoose = require('mongoose');
 
+const myDB = mongoose.connection.useDb('calendar_db');
+
 /**
  * User Schema
  *
@@ -55,6 +57,6 @@ const CalendarSchema = mongoose.Schema({
  *
  * @type {mongoose.Model}
  */
-const Calendar = mongoose.model('calenders', CalendarSchema)
+const Calendar = myDB.model('calenders', CalendarSchema)
 
 module.exports = Calendar;

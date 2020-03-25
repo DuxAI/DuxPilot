@@ -11,6 +11,7 @@ const oAuth2Client = new OAuth2(
     process.env.GOOGLE_SECRET_KEY,
     process.env.CALENDER_AUTH_URL
 );
+console.log(process.env.GOOGLE_CLIENT_ID)
 const SCOPES = ['https://www.googleapis.com/auth/calendar.readonly',
 'https://www.googleapis.com/auth/userinfo.profile'];
 
