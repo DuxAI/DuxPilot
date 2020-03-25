@@ -5,7 +5,6 @@ const qs = require("querystring");
 const axios = require("axios");
 const url = "https://slack.com/api/oauth.v2.access";
 
-
 async function getSlackAccessToken(code) {
     const headers = {
         headers: {
@@ -42,8 +41,6 @@ async function saveUserTokenToDB(tokenData) {
             if (err) return console.error(err);
         })
 }
-
-
 
 async function saveIMToDB(im) {
     const IMToInsert = new IM({

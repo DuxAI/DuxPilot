@@ -1,15 +1,20 @@
 const router = require("express").Router();
-const { saveCalendarData } = require("../services/calendar");
+const { saveCalendarData, createOuthUrlToken, getToken, getUserData } = require("../services/calendar");
 
-// ROUTES oauth2
 router.get("/", async (req, res) => {
+    let url = createOuthUrlToken()
+    res.redirect(url);
+})
+// ROUTES oauth2
+router.get("/auth/", async (req, res) => {
     try {
-        if (!req.query.refresh_token) {
+        if (!req.query.code) {
             //no code, no access!
             return res.status(401).end();
         }
-    
-        await saveCalendarData(req.query.refresh_token);
+        let token = await getToken(req.query.code)
+        await  getUserData(token);
+        await saveCalendarData(token);
         res.status(200).json({
             message: "success"
         })

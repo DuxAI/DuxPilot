@@ -1,19 +1,46 @@
 require("dotenv").config();
-const { Calendar }= require("../models");
+const { Calendar } = require("../models");
 const { google } = require('googleapis')
 // Require oAuth2 from our google instance.
 const { OAuth2 } = google.auth
 // Create a new instance of oAuth and set our Client ID & Client Secret.
+console.log()
+
 const oAuth2Client = new OAuth2(
     process.env.GOOGLE_CLIENT_ID,
-    process.env.GOOGLE_SECRET_KEY
+    process.env.GOOGLE_SECRET_KEY,
+    process.env.CALENDER_AUTH_URL
 );
+const SCOPES = ['https://www.googleapis.com/auth/calendar.readonly',
+'https://www.googleapis.com/auth/userinfo.profile'];
+
+function createOuthUrlToken() {
+    const authUrl = oAuth2Client.generateAuthUrl({
+        access_type: 'offline',
+        scope: SCOPES,
+    });
+    return authUrl;
+}
+
+async function getToken(code) {
+   return await oAuth2Client.getToken(code);
+}
+
+async function getUserData(token) {
+    oAuth2Client.setCredentials(token.tokens)
+    // Create a new people instance.
+    const people = google.people({ version: 'v1', auth: oAuth2Client })
+    const res = await people.people.get({
+        resourceName: 'people/me',
+        personFields: 'emailAddresses,names,photos',
+    });
+    console.log(res.data)
+    return true;
+}
 
 async function saveCalendarData(token) {
     try {
-        oAuth2Client.setCredentials({
-            refresh_token:token
-        })
+        oAuth2Client.setCredentials(token.tokens)
         // Create a new calender instance.
         const calendar = google.calendar({ version: 'v3', auth: oAuth2Client })
         // Create a new event start date instance for temp uses in our calendar.
@@ -48,7 +75,7 @@ async function saveCalendarData(token) {
                             }
                         });
                     }
-                   
+
                     await Calendar.bulkWrite(finalArr, { ordered: true });
                     return true;
                 } else {
@@ -61,12 +88,4 @@ async function saveCalendarData(token) {
     }
 }
 
-module.exports = { saveCalendarData }
-
-
-
-
-
-
-
-
+module.exports = { saveCalendarData, createOuthUrlToken, getToken, getUserData }
