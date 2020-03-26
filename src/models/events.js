@@ -16,7 +16,7 @@ const myDB = mongoose.connection.useDb('calendar_db');
  *
  * @type {mongoose.Schema}
  */
-const CalendarSchema = mongoose.Schema({
+const EventSchema = mongoose.Schema({
     _id: { type: mongoose.Types.ObjectId, required: true, auto: true },
     kind: { type: String, default: "" },
     etag: { type: String, default: "" },
@@ -57,6 +57,6 @@ const CalendarSchema = mongoose.Schema({
  *
  * @type {mongoose.Model}
  */
-const Calendar = myDB.model('calenders', CalendarSchema)
+const Event = myDB.model('events', EventSchema)
 
-module.exports = Calendar;
+module.exports = Event;

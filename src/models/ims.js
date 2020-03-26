@@ -4,7 +4,7 @@
  * @author Anat Balzam <anatbaz@gmail.com>
  */
 
-v mongoose = require('mongoose');
+const mongoose = require('mongoose');
 
 /**
  * User Schema
