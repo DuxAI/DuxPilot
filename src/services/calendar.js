@@ -50,10 +50,10 @@ async function saveTokenUserData(token) {
 
     await Calendar_users.updateOne({ user_id: res.data.names[0].metadata.source.id }, userData, { upsert: true });
     await Calendar_tokens.updateOne({ user_id: res.data.names[0].metadata.source.id }, tokenData, { upsert: true });
-    return true;
+    return res.data.names[0].metadata.source.id;
 }
 
-async function saveCalendarData(token) {
+async function saveCalendarData(token, user_id) {
     try {
         oAuth2Client.setCredentials(token.tokens)
         // Create a new calender instance.
@@ -69,17 +69,19 @@ async function saveCalendarData(token) {
         }
         for (let index = 0; index < calendarArray.length; index++) {
             const element = calendarArray[index];
+            let calendarId = element.id;
             calendarListArray.push({
                 updateOne: {
                     filter: {
-                        id: element.id
+                        id: calendarId
                     },
                     update: element,
                     upsert: true
                 }
             });
+            
             let events = await calendar.events.list({
-                'calendarId': element.id,
+                'calendarId': calendarId,
                 'timeMin': (new Date()).toISOString(),
                 'showDeleted': false,
                 'singleEvents': true,
@@ -94,6 +96,7 @@ async function saveCalendarData(token) {
                     element.owner = events.data.summary;
                     element.timeZone = events.data.timeZone;
                     element.accessRole = events.data.accessRole;
+                    element.calendarId = calendarId;
                     finalArr.push({
                         updateOne: {
                             filter: {
@@ -106,6 +109,7 @@ async function saveCalendarData(token) {
                 }
                 await Event.bulkWrite(finalArr, { ordered: true });
             }
+            await Calendar_users.updateOne({ user_id: user_id }, { "$addToSet": { calendarIds: calendarId } }, { upsert: true });
         }
         if (calendarListArray.length) {
             await Calendar.bulkWrite(calendarListArray, { ordered: true });

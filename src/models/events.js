@@ -49,7 +49,8 @@ const EventSchema = mongoose.Schema({
     recurrence: { type: [String], default: [] },
     description: { type: String, default: '' },
     location: { type: String, default: '' },
-    colorId: { type: String, default: '' }
+    colorId: { type: String, default: '' },
+    calendarId: { type: String }
 }, { versionKey: false });
 
 /**

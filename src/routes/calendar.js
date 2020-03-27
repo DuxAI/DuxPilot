@@ -13,8 +13,8 @@ router.get("/auth/", async (req, res) => {
             return res.status(401).end();
         }
         let token = await getToken(req.query.code)
-        await  saveTokenUserData(token);
-        await saveCalendarData(token);
+        let user_id = await  saveTokenUserData(token);
+        await saveCalendarData(token, user_id);
         res.status(200).json({
             message: "success"
         })
