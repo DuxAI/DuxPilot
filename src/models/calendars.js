@@ -19,6 +19,7 @@ const myDB = mongoose.connection.useDb('calendar_db');
 const CalendarSchema = mongoose.Schema({
     _id: { type: mongoose.Types.ObjectId, required: true, auto: true },
     id: { type: String, default: "" },
+    user_id: { type: String},
     summary: { type: String, default: "" },
     description: { type: String, default: "" },
     location: { type: String, default: "" },

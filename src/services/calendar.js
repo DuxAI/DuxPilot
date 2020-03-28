@@ -70,10 +70,12 @@ async function saveCalendarData(token, user_id) {
         for (let index = 0; index < calendarArray.length; index++) {
             const element = calendarArray[index];
             let calendarId = element.id;
+            element.user_id = user_id;
             calendarListArray.push({
                 updateOne: {
                     filter: {
-                        id: calendarId
+                        id: calendarId,
+                        user_id: user_id
                     },
                     update: element,
                     upsert: true
