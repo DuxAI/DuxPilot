@@ -7,4 +7,6 @@ exports.Event = require("./events");
 exports.Calendar_tokens = require("./calendar.tokens");
 exports.Calendar = require("./calendars");
 exports.Calendar_users = require("./calendar.users");
-
+exports.Mail_tokens = require("./mail.tokens");
+exports.Message = require("./mail.message");
+exports.Mail_users = require("./mail.users");
