@@ -1,5 +1,5 @@
 require("dotenv").config();
-const { Mail_tokens, Mail_users, Message } = require("../models");
+const { Mail_tokens, Mail_users, Message, User } = require("../models");
 const { google } = require('googleapis')
 // Require oAuth2 from our google instance.
 const { OAuth2 } = google.auth
@@ -11,8 +11,10 @@ const oAuth2Client = new OAuth2(
     process.env.MAIL_AUTH_URL
 );
 const SCOPES = [
-    'https://www.googleapis.com/auth/gmail.readonly',
-    'https://www.googleapis.com/auth/userinfo.profile'];
+    'https://www.googleapis.com/auth/gmail.metadata',
+    'https://www.googleapis.com/auth/userinfo.profile',
+    'https://www.googleapis.com/auth/userinfo.email'
+];
 
 function createOuthUrlToken() {
     const authUrl = oAuth2Client.generateAuthUrl({
@@ -34,13 +36,14 @@ async function saveTokenUserData(token) {
         resourceName: 'people/me',
         personFields: 'emailAddresses,names,photos',
     });
-    let userData = {
-        user_id: res.data.names[0].metadata.source.id,
-        name: res.data.names[0].displayName,
-        second_name: res.data.names[0].familyName,
-        first_name: res.data.names[0].givenName,
-        profile_pic: res.data.photos[0].url
-    }
+
+    // let userData = {
+    //     user_id: res.data.names[0].metadata.source.id,
+    //     name: res.data.names[0].displayName,
+    //     second_name: res.data.names[0].familyName,
+    //     first_name: res.data.names[0].givenName,
+    //     profile_pic: res.data.photos[0].url
+    // }
 
     let tokenData = {
         user_id: res.data.names[0].metadata.source.id,
@@ -49,49 +52,76 @@ async function saveTokenUserData(token) {
         id_token: token.tokens.id_token
     }
 
-    await Mail_users.updateOne({ user_id: res.data.names[0].metadata.source.id }, userData, { upsert: true });
+   // await Mail_users.updateOne({ user_id: res.data.names[0].metadata.source.id }, userData, { upsert: true });
     await Mail_tokens.updateOne({ user_id: res.data.names[0].metadata.source.id }, tokenData, { upsert: true });
+    await User.updateOne({ email: res.data.emailAddresses[0].value }, {user_id: res.data.names[0].metadata.source.id });
+
     return res.data.names[0].metadata.source.id;
 }
 
 async function messageDataExtract(messages) {
     let object = {};
-      for (let index = 0; index < messages.length; index++) {
+    for (let index = 0; index < messages.length; index++) {
         switch (messages[index].name) {
-          case 'Subject':
-            object.subject = messages[index].value;
-            break;
-          case 'To':
-            object.to = messages[index].value;
-            break;
-          case 'Cc':
-            object.cc = messages[index].value;
-            break;
-          case 'Date':
-            object.date_time = messages[index].value;
-            break;
-          case 'Thread-Topic':
-            object.thread_topic = messages[index].value;
-            break;
-          case 'From':
-            object.from = messages[index].value;
+            case 'Subject':
+                object.subject = messages[index].value;
+                break;
+            case 'To':
+                object.to = messages[index].value;
+                break;
+            case 'Cc':
+                object.cc = messages[index].value;
+                break;
+            case 'Date':
+                object.date_time = messages[index].value;
+                break;
+            case 'Thread-Topic':
+                object.thread_topic = messages[index].value;
+                break;
+            case 'From':
+                object.from = messages[index].value;
+                break;
+        }
+    }
+    if (object.cc) {
+        object.to = object.to + ', ' + object.cc;
+    }
+    return object;
+}
+
+async function getEmployees(user_id) {
+    return User.findOne({user_id: user_id});
+}
+
+function checkInvolvedMail(msg, manager) {
+    let status = false;
+    for (let index = 0; index < manager.employees.length; index++) {
+        const element = manager.employees[index];
+        if (msg.to.search(element.email) > -1 || msg.from.search(element.email) > -1) {
+            status = true;
             break;
         }
-      }
-      if (object.cc) {
-        object.to = object.to +', '+ object.cc;
-      }
-      console.log(object)
-      return object;
+    }
+    return status;
 }
+
+function checkRelevant(msg, manager) {
+    if (msg.to.split(',').length < 5 && checkInvolvedMail(msg, manager)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
 async function saveMailMessageData(token, user_id) {
     try {
         oAuth2Client.setCredentials(token.tokens)
         // Create a new calender instance.
         const gmail = google.gmail({ version: 'v1', auth: oAuth2Client })
 
+        let manager = await getEmployees(user_id);
         let mailsList = await gmail.users.messages.list({
-            userId: user_id,
+            userId: user_id
         });
 
         let messages = [];
@@ -104,20 +134,25 @@ async function saveMailMessageData(token, user_id) {
         for (let index = 0; index < mailsList.length; index++) {
             let message = await gmail.users.messages.get({
                 userId: user_id,
-                id: mailsList[index].id
+                id: mailsList[index].id,
+                format: "metadata"
             });
             let msg = await messageDataExtract(message.data.payload.headers);
-            msg = {...message.data, ...msg};
-            messages.push({
-                updateOne: {
-                    filter: {
-                        msg_id: message.data.id,
-                        user_id: user_id
-                    },
-                    update: msg,
-                    upsert: true
-                }
-            });
+            msg = { ...message.data, ...msg };
+            let isRelevant = checkRelevant(msg, manager);
+            if (isRelevant) {
+                console.log(msg);
+                messages.push({
+                    updateOne: {
+                        filter: {
+                            msg_id: message.data.id,
+                            user_id: user_id
+                        },
+                        update: msg,
+                        upsert: true
+                    }
+                });
+            }
         }
 
         if (messages.length) {
