@@ -5,8 +5,7 @@
  */
 
 var mongoose = require('mongoose');
-const myDB = mongoose.connection.useDb('slack_db');
-
+const myDB = mongoose.connection.useDb('users_db');
 
 /**
  * User Schema
