@@ -15,7 +15,7 @@ router.get("/auth", async (req, res) => {
         const token = await getSlackAccessToken(req.query.code);
         saveUsersFromSlack(token);
         saveChannelAndMsgsFromSlack(token);
-        res.redirect(200,'/test')
+        res.status(200).redirect('/calendar')
 
     } catch (error) {
         console.log("ERROR:", error);

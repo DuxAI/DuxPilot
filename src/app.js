@@ -12,7 +12,7 @@ const app = express()
 const port = 3000
 
 
-app.use('/slack', slack);
+app.use('/', slack);
 app.use('/calendar', calendar);
 app.use('/mail', mail);
 
