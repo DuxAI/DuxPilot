@@ -1,5 +1,6 @@
 exports.Channel = require("./channels");
 exports.Msg = require("./msg");
+exports.Slack_users = ("./users.slack")
 exports.User = require("./users");
 exports.IM = require("./ims")
 exports.UserToken = require("./users.tokens");

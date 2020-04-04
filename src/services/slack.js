@@ -1,5 +1,5 @@
 require("dotenv").config();
-const {Channel, Msg, User, UserToken, IM }= require("../models")
+const {Channel, Msg, Slack_users, UserToken, IM }= require("../models")
 const { WebClient } = require('@slack/web-api');
 const qs = require("querystring");
 const axios = require("axios");
@@ -58,14 +58,14 @@ async function saveIMToDB(im) {
 
 
 async function saveNewSlackUserToDB(user) {
-    const userToSave = new User({
+    const userToSave = new Slack_users({
         user_id: user.id,
         user_name: user.name,
         real_name: user.real_name,
         team_id: user.team_id
     })
 
-    await User.updateOne(
+    await Slack_users.updateOne(
         {user_id: user.id}, 
         {$setOnInsert: userToSave}, 
         {upsert: true}, 
