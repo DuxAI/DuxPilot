@@ -130,7 +130,6 @@ async function saveNewMsgToDB(message, channel) {
         channel_id: channel.id,
         user_id: message.user,
         type: message.type,
-        text: message.text,
         ts: message.ts,
         team: message.team
     });
