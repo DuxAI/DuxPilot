@@ -18,7 +18,6 @@ const MsgSchema = mongoose.Schema({
     channel_id: String,
     user_id: String,
     type: String,
-    text: String,
     ts: String,
     time_stamp: Int32,
     team: String,
