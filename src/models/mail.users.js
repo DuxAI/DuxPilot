@@ -23,7 +23,8 @@ const MailUserSchema = mongoose.Schema({
     name: { type: String, default: "" },
     second_name: { type: String, default: "" },
     first_name: { type: String, default: "" },
-    profile_pic: { type: String, default: "" }
+    profile_pic: { type: String, default: "" },
+    email: { type: String, default: "" }
 }, { versionKey: false });
 
 /**

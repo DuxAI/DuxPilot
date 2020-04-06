@@ -37,13 +37,14 @@ async function saveTokenUserData(token) {
         personFields: 'emailAddresses,names,photos',
     });
 
-    // let userData = {
-    //     user_id: res.data.names[0].metadata.source.id,
-    //     name: res.data.names[0].displayName,
-    //     second_name: res.data.names[0].familyName,
-    //     first_name: res.data.names[0].givenName,
-    //     profile_pic: res.data.photos[0].url
-    // }
+    let userData = {
+        user_id: res.data.names[0].metadata.source.id,
+        name: res.data.names[0].displayName,
+        second_name: res.data.names[0].familyName,
+        first_name: res.data.names[0].givenName,
+        profile_pic: res.data.photos[0].url,
+        email: res.data.emailAddresses[0].value
+    }
 
     let tokenData = {
         user_id: res.data.names[0].metadata.source.id,
@@ -52,11 +53,11 @@ async function saveTokenUserData(token) {
         id_token: token.tokens.id_token
     }
 
-   // await Mail_users.updateOne({ user_id: res.data.names[0].metadata.source.id }, userData, { upsert: true });
+    await Mail_users.updateOne({ user_id: res.data.names[0].metadata.source.id }, userData, { upsert: true });
     await Mail_tokens.updateOne({ user_id: res.data.names[0].metadata.source.id }, tokenData, { upsert: true });
-    await User.updateOne({ email: res.data.emailAddresses[0].value }, {user_id: res.data.names[0].metadata.source.id });
+    //await User.updateOne({ email: res.data.emailAddresses[0].value }, {user_id: res.data.names[0].metadata.source.id });
 
-    return res.data.names[0].metadata.source.id;
+    return { user_id: res.data.names[0].metadata.source.id, email: res.data.emailAddresses[0].value}
 }
 
 async function messageDataExtract(messages) {
@@ -89,14 +90,14 @@ async function messageDataExtract(messages) {
     return object;
 }
 
-async function getEmployees(user_id) {
-    return User.findOne({user_id: user_id});
+async function getEmployees(email) {
+    return User.findOne({email: email});
 }
 
 function checkInvolvedMail(msg, manager) {
     let status = false;
     employees_list = JSON.parse(JSON.stringify(manager)).employees;
-    for (let element in  employees_list) {
+    for (let element of  employees_list) {
         if (msg.to.search(element.email) > -1 || msg.from.search(element.email) > -1) {
             status = true;
             break;
@@ -106,19 +107,20 @@ function checkInvolvedMail(msg, manager) {
 }
 
 function checkRelevant(msg, manager) {
-    console.log(msg)
-    console.log(JSON.parse(JSON.stringify(manager)).employees)
+    //console.log(msg)
+   // console.log(JSON.parse(JSON.stringify(manager)).employees)
+   console.log(checkInvolvedMail(msg, manager))
     return msg.to.split(',').length < 5 && checkInvolvedMail(msg, manager)
   
 }
 
-async function saveMailMessageData(token, user_id) {
+async function saveMailMessageData(token, user_id, email) {
     try {
         oAuth2Client.setCredentials(token.tokens)
         // Create a new calender instance.
         const gmail = google.gmail({ version: 'v1', auth: oAuth2Client })
 
-        let manager = await getEmployees(user_id);
+        let manager = await getEmployees(email);
         let mailsList = await gmail.users.messages.list({
             userId: user_id
         });

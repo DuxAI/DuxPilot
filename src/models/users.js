@@ -17,10 +17,10 @@ const myDB = mongoose.connection.useDb('users_db');
  */
 const UserSchema = mongoose.Schema({
         user_id: String,
-//        user_name: String,
-//        real_name: String,
-//        team_id: String,
-//        employees: { type: [Object]},
+        user_name: String,
+        real_name: String,
+        team_id: String,
+        employees: { type: [Object] },
         email: String
 }, { versionKey: false });
 
@@ -29,6 +29,6 @@ const UserSchema = mongoose.Schema({
  *
  * @type {mongoose.Model}
  */
-const User = myDB.model('user', UserSchema,'users')
+const User = myDB.model('user', UserSchema, 'users')
 
 module.exports = User;

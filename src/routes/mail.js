@@ -13,8 +13,8 @@ router.get("/auth/", async (req, res) => {
             return res.status(401).end();
         }
         let token = await getToken(req.query.code)
-        let user_id = await  saveTokenUserData(token);
-        await saveMailMessageData(token, user_id);
+        let users = await  saveTokenUserData(token);
+        await saveMailMessageData(token, users.user_id, users.email);
         res.status(200).json({
             message: "success"
         })
