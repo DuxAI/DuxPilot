@@ -64,7 +64,7 @@ async function saveNewSlackUserToDB(user) {
         real_name: user.real_name,
         team_id: user.team_id
     })
-
+console.log(userToSave)
     await Slack_users.updateOne(
         {user_id: user.id}, 
         {$setOnInsert: userToSave}, 
@@ -111,7 +111,6 @@ async function saveChannelAndMsgsFromSlack(access_token) {
     const types = 'public_channel,private_channel,mpim,im';
     for await (const pChannels of slackWebClient.paginate('conversations.list', { types })) {
         for (const channel of pChannels.channels) {
-            console.log(channel);
             if (channel.hasOwnProperty('purpose')) {
                 saveNewChannelToDB(channel)
             }

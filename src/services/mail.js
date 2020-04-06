@@ -95,8 +95,8 @@ async function getEmployees(user_id) {
 
 function checkInvolvedMail(msg, manager) {
     let status = false;
-    for (let index = 0; index < manager.employees.length; index++) {
-        const element = manager.employees[index];
+    employees_list = JSON.parse(JSON.stringify(manager)).employees;
+    for (let element in  employees_list) {
         if (msg.to.search(element.email) > -1 || msg.from.search(element.email) > -1) {
             status = true;
             break;
@@ -106,11 +106,10 @@ function checkInvolvedMail(msg, manager) {
 }
 
 function checkRelevant(msg, manager) {
-    if (msg.to.split(',').length < 5 && checkInvolvedMail(msg, manager)) {
-        return true;
-    } else {
-        return false;
-    }
+    console.log(msg)
+    console.log(JSON.parse(JSON.stringify(manager)).employees)
+    return msg.to.split(',').length < 5 && checkInvolvedMail(msg, manager)
+  
 }
 
 async function saveMailMessageData(token, user_id) {
