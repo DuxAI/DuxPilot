@@ -58,65 +58,82 @@ async function saveCalendarData(token, user_id) {
         oAuth2Client.setCredentials(token.tokens)
         // Create a new calender instance.
         const calendar = google.calendar({ version: 'v3', auth: oAuth2Client })
-        // Create a new event start date instance for temp uses in our calendar.
-        const eventStartTime = new Date()
-        eventStartTime.setDate(eventStartTime.getDay() + 2)
-        let calendarList = await calendar.calendarList.list();
-        let calendarListArray = [];
-        let calendarArray = [];
-        if (calendarList && calendarList.data && calendarList.data.items.length > 0) {
-            calendarArray = calendarList.data.items;
+
+        let calendarResponse = await calendar.calendarList.list();
+        let calendarsToPush = [];
+        let calendarItems = [];
+        if (calendarResponse && calendarResponse.data && calendarResponse.data.items.length > 0) {
+            calendarItems = calendarResponse.data.items;
         }
-        for (let index = 0; index < calendarArray.length; index++) {
-            const element = calendarArray[index];
-            let calendarId = element.id;
-            element.user_id = user_id;
-            calendarListArray.push({
+        for (let calendarItem of calendarItems) {
+            let calendarId = calendarItem.id;
+            calendarItem.user_id = user_id;
+            calendarsToPush.push({
                 updateOne: {
                     filter: {
                         id: calendarId,
                         user_id: user_id
                     },
-                    update: element,
+                    update: calendarItem,
                     upsert: true
                 }
             });
-            
-            let events = await calendar.events.list({
-                'calendarId': calendarId,
-                'timeMin': (new Date()).toISOString(),
-                'showDeleted': false,
-                'singleEvents': true,
-                'maxResults': 1000,
-                'orderBy': 'startTime'
-            });
-            if (events && events.data && events.data.items.length > 0) {
-                console.log('Total events', events.data.items.length)
-                let finalArr = [];
-                for (let index = 0; index < events.data.items.length; index++) {
-                    let element = events.data.items[index];
-                    element.owner = events.data.summary;
-                    element.timeZone = events.data.timeZone;
-                    element.accessRole = events.data.accessRole;
-                    element.calendarId = calendarId;
-                    finalArr.push({
-                        updateOne: {
-                            filter: {
-                                id: element.id
-                            },
-                            update: element,
-                            upsert: true
-                        }
-                    });
-                }
-                await Event.bulkWrite(finalArr, { ordered: true });
-            }
+            saveEventsForCalendarId(calendar, calendarId)
             await Calendar_users.updateOne({ user_id: user_id }, { "$addToSet": { calendarIds: calendarId } }, { upsert: true });
+
         }
-        if (calendarListArray.length) {
-            await Calendar.bulkWrite(calendarListArray, { ordered: true });
+        if (calendarsToPush.length) {
+            await Calendar.bulkWrite(calendarsToPush, { ordered: true });
         }
-    } catch (err) {
+    }
+    catch (err) {
+        return console.error(err);
+    }
+}
+
+
+async function saveEventsForCalendarId(calendar, calendarId) {
+    // Create a new event start date instance for temp uses in our calendar.
+    const eventEndLowerBound = new Date()
+    eventEndLowerBound.setDate(eventEndLowerBound.getDate() - 30)
+    const eventStartUpperBound = new Date()
+    eventStartUpperBound.setDate(eventEndLowerBound.getDate() + 30)
+
+    try {
+        console.log("The date of timeMax:", (new Date()).toISOString(), "The date of timeMin:", eventEndLowerBound);
+        let events = await calendar.events.list({
+            'calendarId': calendarId,
+            'timeMin': eventEndLowerBound.toISOString(),
+            'timeMax': eventStartUpperBound.toISOString(),
+            'showDeleted': false,
+            'singleEvents': true,
+            'maxResults': 1000,
+            'orderBy': 'startTime'
+        });
+        console.log(events && events.data && events.data.items.length > 0)
+        if (events && events.data && events.data.items.length > 0) {
+            console.log('Total events', events.data.items.length)
+            let eventsToPush = [];
+            for (let calendarItem of events.data.items) {
+                calendarItem.owner = events.data.summary;
+                calendarItem.timeZone = events.data.timeZone;
+                calendarItem.accessRole = events.data.accessRole;
+                calendarItem.calendarId = calendarId;
+                eventsToPush.push({
+                    updateOne: {
+                        filter: {
+                            id: calendarItem.id
+                        },
+                        update: calendarItem,
+                        upsert: true
+                    }
+                });
+            }
+            await Event.bulkWrite(eventsToPush, { ordered: true });
+        }
+    }
+
+    catch (err) {
         return console.error(err);
     }
 }

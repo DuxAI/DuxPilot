@@ -5,7 +5,6 @@
  */
 
 var mongoose = require('mongoose');
-const myDB = mongoose.connection.useDb('users_db');
 
 /**
  * User Schema
@@ -15,13 +14,11 @@ const myDB = mongoose.connection.useDb('users_db');
  *
  * @type {mongoose.Schema}
  */
-const UserSchema = mongoose.Schema({
+const SlackUserSchema = mongoose.Schema({
         user_id: String,
         user_name: String,
         real_name: String,
-        team_id: String,
-        employees: { type: [Object] },
-        email: String
+        team_id: String
 }, { versionKey: false });
 
 /**
@@ -29,6 +26,6 @@ const UserSchema = mongoose.Schema({
  *
  * @type {mongoose.Model}
  */
-const User = myDB.model('user', UserSchema, 'users')
+const Slack_users = mongoose.model('user', SlackUserSchema,'users')
 
-module.exports = User;
+module.exports = Slack_users;

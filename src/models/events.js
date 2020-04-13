@@ -58,6 +58,6 @@ const EventSchema = mongoose.Schema({
  *
  * @type {mongoose.Model}
  */
-const Event = myDB.model('events', EventSchema)
+const Event = myDB.model('event', EventSchema)
 
 module.exports = Event;

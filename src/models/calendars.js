@@ -43,6 +43,6 @@ const CalendarSchema = mongoose.Schema({
  *
  * @type {mongoose.Model}
  */
-const Calendar = myDB.model('calendars', CalendarSchema)
+const Calendar = myDB.model('calendar', CalendarSchema)
 
 module.exports = Calendar;
