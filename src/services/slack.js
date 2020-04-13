@@ -92,7 +92,7 @@ async function saveNewChannelToDB(channel) {
         is_channel: channel.is_channel,
         is_group: channel.is_group,
         is_im: channel.is_im,
-        team_id: channel.shared_team_ids[0],
+        team_id: channel.shared_team_ids ? channel.shared_team_ids[0] : undefined,
         channel_topic: channel.topic.value,
         channel_purpose: channel.purpose.value,
         participants_sum: channel.num_members
