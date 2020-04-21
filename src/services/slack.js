@@ -93,8 +93,8 @@ async function saveIMToDB(im) {
 async function saveNewSlackUserToDB(user) {
     const userToSave = new Slack_users({
         user_id: user.id,
-        user_name: user.name,
-        real_name: user.real_name,
+        user_name: user.real_name,
+        real_name: user.real_name ? user.real_name : user.name,
         team_id: user.team_id
     })
     await Slack_users.updateOne(
