@@ -1,5 +1,5 @@
 require("dotenv").config();
-const {Channel, Msg, Slack_users, UserToken, IM }= require("../models")
+const { Channel, Msg, Slack_users, UserToken, IM } = require("../models")
 const { WebClient } = require('@slack/web-api');
 const qs = require("querystring");
 const axios = require("axios");
@@ -20,9 +20,14 @@ async function getSlackAccessToken(code) {
 
 
     //posting the client_id, client_secret and auth code to slack api.
-    const result = await axios.post(url, data, headers);
-    saveUserTokenToDB(result.data.authed_user); // TODO; need to encrypt access_token here
-    return result.data.authed_user.access_token;
+    try {
+        const result = await axios.post(url, data, headers);
+        await saveUserTokenToDB(result.data.authed_user); // TODO; need to encrypt access_token here
+        return result.data.authed_user.access_token;
+    }
+    catch {
+        console.log("Failed to autenticate!")
+    }
 }
 
 
@@ -34,11 +39,24 @@ async function saveUserTokenToDB(tokenData) {
         token: tokenData.access_token
     })
     await UserToken.updateOne(
-        {user_id: tokenData.id}, 
-        {$setOnInsert: tokenToSave}, 
-        {upsert: true}, 
-        function (err, usertoken) {
-            if (err) return console.error(err);
+        { user_id: tokenData.id },
+        { $setOnInsert: tokenToSave },
+        { upsert: true },
+        async function (err, usertoken) {
+            if (err && err.code === 11000) {
+                console.log("Retrying update...")
+                // Another upsert occurred during the upsert, try again. You could omit the
+                // upsert option here if you don't ever delete docs while this is running.
+                await UserToken.updateOne(
+                    { user_id: tokenData.id },
+                    { $setOnInsert: tokenToSave },
+                    { upsert: true },
+                    function (err) {
+                        if (err) {
+                            console.trace(err);
+                        }
+                    });
+            }
         })
 }
 
@@ -47,12 +65,27 @@ async function saveIMToDB(im) {
         im_id: im.id,
         im_user: im.user
     })
+    console.log(IMToInsert)
     await IM.updateOne(
-        {im_id: im.id}, 
-        {$setOnInsert: IMToInsert}, 
-        {upsert: true}, 
-        function (err, im) {
-            if (err) return console.error(err);
+        { im_id: im.id },
+        { $setOnInsert: IMToInsert },
+        { upsert: true },
+        async function (err, im) {
+            if (err && err.code === 11000) {
+                console.log("Retrying update...")
+                // Another upsert occurred during the upsert, try again. You could omit the
+                // upsert option here if you don't ever delete docs while this is running.
+                await IM.updateOne(
+                    { im_id: im.id },
+                    { $setOnInsert: IMToInsert },
+                    { upsert: true },
+                    function (err) {
+                        if (err) {
+                            console.trace(err);
+                        }
+                    });
+            }
+
         })
 }
 
@@ -64,23 +97,35 @@ async function saveNewSlackUserToDB(user) {
         real_name: user.real_name,
         team_id: user.team_id
     })
-console.log(userToSave)
     await Slack_users.updateOne(
-        {user_id: user.id}, 
-        {$setOnInsert: userToSave}, 
-        {upsert: true}, 
-        function (err, user) {
-            if (err) return console.error(err);
+        { user_id: user.id },
+        { $setOnInsert: userToSave },
+        { upsert: true },
+        async function (err, user) {
+            if (err && err.code === 11000) {
+                console.log("Retrying update...")
+                // Another upsert occurred during the upsert, try again. You could omit the
+                // upsert option here if you don't ever delete docs while this is running.
+                await Slack_users.updateOne(
+                    { user_id: user.id },
+                    { $setOnInsert: userToSave },
+                    { upsert: true },
+                    function (err) {
+                        if (err) {
+                            console.trace(err);
+                        }
+                    });
+            }
+
         })
 }
 
 
-async function saveUsersFromSlack(access_token) {
-    const slackWebClient = new WebClient(access_token);
+async function saveUsersFromSlack(slackWebClient) {
     for await (const users of slackWebClient.paginate('users.list')) {
         users_array = users.members;
-        users_array.forEach(user => {
-            saveNewSlackUserToDB(user);
+        users_array.forEach(async (user) => {
+            await saveNewSlackUserToDB(user);
         });
     }
 }
@@ -98,33 +143,50 @@ async function saveNewChannelToDB(channel) {
         participants_sum: channel.num_members
     });
     await Channel.updateOne(
-        {channel_id: channel.id}, 
-        {$setOnInsert: channelToSave}, 
-        {upsert: true}, 
-        function (err, channel) {
-            if (err) return console.error(err);
+        { channel_id: channel.id },
+        { $setOnInsert: channelToSave },
+        { upsert: true },
+        async function (err, channel) {
+            if (err && err.code === 11000) {
+                console.log("Retrying update...")
+                // Another upsert occurred during the upsert, try again. You could omit the
+                // upsert option here if you don't ever delete docs while this is running.
+                await Channel.updateOne(
+                    { channel_id: channel.id },
+                    { $setOnInsert: channelToSave },
+                    { upsert: true },
+                    function (err) {
+                        if (err) {
+                            console.trace(err);
+                        }
+                    });
+            }
+
         })
 }
 
-async function saveChannelAndMsgsFromSlack(access_token) {
-    const slackWebClient = new WebClient(access_token);
+function getSlackConnector(access_token) {
+    return new WebClient(access_token);
+}
+
+async function saveChannelAndMsgsFromSlack(slackWebClient) {
     const types = 'public_channel,private_channel,mpim,im';
     for await (const pChannels of slackWebClient.paginate('conversations.list', { types })) {
         for (const channel of pChannels.channels) {
             if (channel.hasOwnProperty('purpose')) {
-                saveNewChannelToDB(channel)
+                await saveNewChannelToDB(channel)
             }
             else {
-                saveIMToDB(channel)
+                await saveIMToDB(channel)
             }
-            saveMsgsFromChannel(slackWebClient, channel)
+            await saveMsgsFromChannel(slackWebClient, channel)
         }
-       
+
     }
 }
 
 async function saveNewMsgToDB(message, channel) {
-    
+
 
     const msgToSave = new Msg({
         channel_id: channel.id,
@@ -134,22 +196,41 @@ async function saveNewMsgToDB(message, channel) {
         team: message.team
     });
     await Msg.updateOne(
-        {ts: message.ts}, 
-        {$setOnInsert: msgToSave}, 
-        {upsert: true}, 
-        function (err, msg) {
-            if (err) return console.error(err);
+        { ts: message.ts },
+        { $setOnInsert: msgToSave },
+        { upsert: true },
+        async function (err, msg) {
+            if (err && err.code === 11000) {
+                console.log("Retrying update...")
+                // Another upsert occurred during the upsert, try again. You could omit the
+                // upsert option here if you don't ever delete docs while this is running.
+                await Msg.updateOne(
+                    { ts: message.ts },
+                    { $setOnInsert: msgToSave },
+                    { upsert: true },
+                    function (err) {
+                        if (err) {
+                            console.trace(err);
+                        }
+                    });
+            }
         })
 }
 async function saveMsgsFromChannel(slackWebClient, channel) {
-    for await (const pMessages of slackWebClient.paginate('conversations.history', { channel: channel.id })) {
-        for (const message of pMessages.messages) {
-            saveNewMsgToDB(message, channel)
+    try {
+        for await (const pMessages of slackWebClient.paginate('conversations.history', { channel: channel.id, oldest: '1581845320' })) {
+            for (const message of pMessages.messages) {
+                console.log(message);
+                await saveNewMsgToDB(message, channel)
+            }
         }
+    }
+    catch (e) {
+        console.log(e)
     }
 }
 
-module.exports = {getSlackAccessToken, saveChannelAndMsgsFromSlack, saveUsersFromSlack }
+module.exports = { getSlackConnector, getSlackAccessToken, saveChannelAndMsgsFromSlack, saveUsersFromSlack }
 
 
 

@@ -12,24 +12,25 @@ const app = express()
 const port = 3000
 
 
-const { createEventAdapter } = require('@slack/events-api');
-// *** Initialize event adapter using signing secret from environment variables ***
-const slackEvents = createEventAdapter(process.env.SLACK_SIGNING_SECRET, {
-    includeBody: true
-  });
+// const { createEventAdapter } = require('@slack/events-api');
+// // *** Initialize event adapter using signing secret from environment variables ***
+// const slackEvents = createEventAdapter(process.env.SLACK_SIGNING_SECRET, {
+//     includeBody: true
+//   });
 
-// Attach listeners to events by Slack Event "type". See: https://api.slack.com/events/message.im
-slackEvents.on('message', (event) => {
-  console.log(`Received a message event: user ${event.user} in channel ${event.channel} says ${event.text}`);
-});
+// // Attach listeners to events by Slack Event "type". See: https://api.slack.com/events/message.im
+// slackEvents.on('message', (event) => {
+//   console.log(`Received a message event: user ${event.user} in channel ${event.channel} says ${event.text}`);
+// });
 
 
-app.use('/slack/events', slackEvents.expressMiddleware());
+// app.use('/slack/events', slackEvents.expressMiddleware());
 
 
 app.use('/', slack);
 app.use('/calendar', calendar);
 app.use('/mail', mail);
+app.use(express.static(path.join(__dirname, 'routes/views')));
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
 
