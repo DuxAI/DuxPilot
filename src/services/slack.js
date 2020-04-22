@@ -5,6 +5,10 @@ const qs = require("querystring");
 const axios = require("axios");
 const url = "https://slack.com/api/oauth.v2.access";
 
+function fromUnixToDate(unix_timestamp){
+    return new Date(unix_timestamp * 1000);
+}
+
 async function getSlackAccessToken(code) {
     const headers = {
         headers: {
@@ -30,8 +34,6 @@ async function getSlackAccessToken(code) {
     }
 }
 
-
-
 async function saveUserTokenToDB(tokenData) {
     const tokenToSave = new UserToken({
         user_id: tokenData.id,
@@ -39,7 +41,7 @@ async function saveUserTokenToDB(tokenData) {
         token: tokenData.access_token
     })
     await UserToken.updateOne(
-        { user_id: tokenData.id },
+        { token: tokenData.access_token },
         { $setOnInsert: tokenToSave },
         { upsert: true },
         async function (err, usertoken) {
@@ -137,7 +139,7 @@ async function saveNewChannelToDB(channel) {
         is_channel: channel.is_channel,
         is_group: channel.is_group,
         is_im: channel.is_im,
-        team_id: channel.shared_team_ids ? channel.shared_team_ids[0] : undefined,
+        team_id: channel.shared_team_ids ? channel.shared_team_ids[0] : null,
         channel_topic: channel.topic.value,
         channel_purpose: channel.purpose.value,
         participants_sum: channel.num_members

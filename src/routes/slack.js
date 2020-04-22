@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const UserToken = require("../models/users.tokens")
+const {UserToken, Msg} = require("../models")
 const {getSlackConnector ,getSlackAccessToken, saveUsersFromSlack, saveChannelAndMsgsFromSlack } = require("../services/slack");
 
 
@@ -31,6 +31,16 @@ router.get("/auth", async (req, res) => {
 }
 );
 
+router.get("/test", async(req, res) => {
+   let team_id = "T01081GCW4E" // TODO; getTeamByUser, for each user/team?
+   let counter = 0;
+   let result = Msg.find({'team': team_id, 'ts': { $gt: "1585100800" } , 'channel_id': {$regex:/^D/}}, function (err, person) {
+    if (err) console.log(err);})
+    for await (const msg of result){
+        counter++;
+    }
+    console.log(counter)
+})
 router.get("/pull", async (req, res) => {
     try {
         // for await (const usertoken of UserToken.find()) {

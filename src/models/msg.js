@@ -19,8 +19,8 @@ const MsgSchema = mongoose.Schema({
     user_id: String,
     type: String,
     ts: String,
-    time_stamp: Int32,
     team: String,
+    date: Date,
     response_time: Int32
 }, { versionKey: false });
 
