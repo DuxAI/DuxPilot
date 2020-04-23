@@ -98,20 +98,20 @@ async function saveCalendarData(token, user_id) {
                 updateOne: {
                     filter: {
                         id: calendarId,
-                        user_id: user_id
+                        user_id: await user_id
                     },
                     update: calendarItem,
                     upsert: true
                 }
             });
             saveEventsForCalendarId(calendar, calendarId)
-            await Calendar_users.updateOne({ user_id: user_id }, { "$addToSet": { calendarIds: calendarId } }, { upsert: true },
+            await Calendar_users.updateOne({ user_id: await user_id }, { "$addToSet": { calendarIds: calendarId } }, { upsert: true },
             async function (err) {
                 if (err && err.code === 11000) {
                     console.log("Retrying update...")
                     // Another upsert occurred during the upsert, try again. You could omit the
                     // upsert option here if you don't ever delete docs while this is running.
-                    await Calendar_users.updateOne({ user_id: user_id }, { "$addToSet": { calendarIds: calendarId } }, { upsert: true },
+                    await Calendar_users.updateOne({ user_id: await user_id }, { "$addToSet": { calendarIds: calendarId } }, { upsert: true },
                         function (err) {
                             if (err) {
                                 console.trace(err);
