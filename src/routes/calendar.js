@@ -21,7 +21,8 @@ router.get("/auth/", async (req, res) => {
         let user_id = saveTokenUserData(token);
         saveCalendarData(token, user_id);
 	res.statusMessage = "Thanks for signing up to DUX AI!"
-        return res.status(200).end();
+        return res.sendFile(__dirname + '/views/doneSignUp.html').status(200).end();
+        
 
     } catch (error) {
         console.log("ERROR:", error);
