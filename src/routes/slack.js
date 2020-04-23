@@ -31,29 +31,27 @@ router.get("/auth", async (req, res) => {
 }
 );
 
-router.get("/pull", async (req, res) => {
-    try {
+//router.get("/pull", async (req, res) => {
+ //   try {
         // for await (const usertoken of UserToken.find()) {
         //      const token = usertoken.token;
         //      saveChannelAndMsgsFromSlack(token);
         //     (token);
 
         // }
+   //     if (!slackConnector) {
+     //       return res.status(500).statusMessage('failed to connect')
+       // }
 
-        const slackConnector = await getSlackConnector("xoxp-9981337701-11960614679-1089990022544-8d8fa078f4c4d3546b496c700099eb76");
-        if (!slackConnector) {
-            return res.status(500).statusMessage('failed to connect')
-        }
+        //res.status(200).redirect('/calender')
 
-        res.status(200).redirect('/calender')
-
-        saveChannelAndMsgsFromSlack(slackConnector)
-    }
-    catch (error) {
-        console.log("ERROR:", error);
-        res.status(500).end();
-    }
-});
+        //saveChannelAndMsgsFromSlack(slackConnector)
+   // }
+    //catch (error) {
+      //  console.log("ERROR:", error);
+        //res.status(500).end();
+    //}
+//});
 
 
 module.exports = router;
