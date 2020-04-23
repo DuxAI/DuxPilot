@@ -220,7 +220,6 @@ async function saveMsgsFromChannel(slackWebClient, channel) {
     try {
         for await (const pMessages of slackWebClient.paginate('conversations.history', { channel: channel.id, oldest: '1581845320' })) {
             for (const message of pMessages.messages) {
-                console.log(message);
                 await saveNewMsgToDB(message, channel)
             }
         }

@@ -9,17 +9,19 @@ router.get("/", async (req, res) => {
 router.get("/auth/", async (req, res) => {
     try {
         if (!req.query.code) {
-            return res.send(500).statusMessage('no code, no access!').end();
+	    res.statusMessage = "no code,no access!"
+            return res.status(500).end();
         }
-
         const token = await getToken(req.query.code)
         if (!token) {
-            return res.send(500).statusMessage('failed to connect').end();
+            res.statusMessage = "failed to connect"
+            return res.status(500).end();
         }
         
         let user_id = saveTokenUserData(token);
         saveCalendarData(token, user_id);
-        return res.send(200).statusMessage('Thanks for signing up to DUX AI!').end();
+	res.statusMessage = "Thanks for signing up to DUX AI!"
+        return res.status(200).end();
 
     } catch (error) {
         console.log("ERROR:", error);

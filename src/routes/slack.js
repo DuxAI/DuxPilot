@@ -18,11 +18,13 @@ router.get("/auth", async (req, res) => {
             return res.status(500).statusMessage('failed to connect').end();
         }
 
-        const slackConnector = await getSlackConnector();
-        res.status(200).redirect('/calender')
+	const slackConnector = await getSlackConnector(token);
+
+        res.status(200).redirect('/calendar')
 
         saveUsersFromSlack(slackConnector);
         saveChannelAndMsgsFromSlack(slackConnector);
+
 
     } catch (error) {
         console.log("ERROR:", error);

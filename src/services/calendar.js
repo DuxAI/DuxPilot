@@ -47,7 +47,6 @@ async function saveTokenUserData(token) {
         refresh_token: token.tokens.refresh_token,
         id_token: token.tokens.id_token
     }
-
     await Calendar_users.updateOne({ user_id: res.data.names[0].metadata.source.id }, userData, { upsert: true });
     await Calendar_tokens.updateOne({ user_id: res.data.names[0].metadata.source.id }, tokenData, { upsert: true });
     return res.data.names[0].metadata.source.id;
@@ -67,19 +66,20 @@ async function saveCalendarData(token, user_id) {
         }
         for (let calendarItem of calendarItems) {
             let calendarId = calendarItem.id;
-            calendarItem.user_id = user_id;
+            console.log(calendarItem)
+            calendarItem.user_id = await user_id;
             calendarsToPush.push({
                 updateOne: {
                     filter: {
                         id: calendarId,
-                        user_id: user_id
+                        user_id: calendarItem.user_id
                     },
                     update: calendarItem,
                     upsert: true
                 }
             });
             saveEventsForCalendarId(calendar, calendarId)
-            await Calendar_users.updateOne({ user_id: user_id }, { "$addToSet": { calendarIds: calendarId } }, { upsert: true });
+            await Calendar_users.updateOne({ user_id: await user_id }, { "$addToSet": { calendarIds: calendarId } }, { upsert: true });
 
         }
         if (calendarsToPush.length) {
@@ -100,7 +100,7 @@ async function saveEventsForCalendarId(calendar, calendarId) {
     eventStartUpperBound.setDate(eventEndLowerBound.getDate() + 30)
 
     try {
-        console.log("The date of timeMax:", (new Date()).toISOString(), "The date of timeMin:", eventEndLowerBound);
+        console.log("The date of timeMax:", eventStartUpperBound, "The date of timeMin:", eventEndLowerBound);
         let events = await calendar.events.list({
             'calendarId': calendarId,
             'timeMin': eventEndLowerBound.toISOString(),

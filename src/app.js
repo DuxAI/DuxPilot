@@ -9,7 +9,7 @@ require('dotenv').config({ path: path.join(__dirname, '.env') });
 global.db = connectToDB();
 
 const app = express()
-const port = 3000
+const port = 80
 
 
 // const { createEventAdapter } = require('@slack/events-api');
