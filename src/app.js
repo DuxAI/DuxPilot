@@ -9,7 +9,7 @@ require('dotenv').config({ path: path.join(__dirname, '.env') });
 global.db = connectToDB();
 
 const app = express()
-const port = 3000
+const port = 80
 
 
 // const { createEventAdapter } = require('@slack/events-api');
@@ -30,7 +30,9 @@ const port = 3000
 app.use('/', slack);
 app.use('/calendar', calendar);
 app.use('/mail', mail);
-app.use(express.static(path.join(__dirname, 'routes/views')));
+
+console.log(__dirname+'/public/views/')
+app.use(express.static(__dirname+'/public/views/'));
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
 

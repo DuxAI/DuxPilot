@@ -4,7 +4,7 @@ const {getSlackConnector ,getSlackAccessToken, saveUsersFromSlack, saveChannelAn
 
 
 router.get("/", async (req, res) => {
-    res.sendFile(__dirname + '/views/index.html')
+    res.sendFile('/home/ec2-user/DuxPilot/src/public/views/index.html')
 })
 // ROUTES oauth2
 router.get("/auth", async (req, res) => {
