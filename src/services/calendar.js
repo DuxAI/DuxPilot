@@ -47,8 +47,35 @@ async function saveTokenUserData(token) {
         refresh_token: token.tokens.refresh_token,
         id_token: token.tokens.id_token
     }
-    await Calendar_users.updateOne({ user_id: res.data.names[0].metadata.source.id }, userData, { upsert: true });
-    await Calendar_tokens.updateOne({ user_id: res.data.names[0].metadata.source.id }, tokenData, { upsert: true });
+
+    await Calendar_users.updateOne({ user_id: res.data.names[0].metadata.source.id }, userData, { upsert: true },
+        async function (err) {
+            if (err && err.code === 11000) {
+                console.log("Retrying update...")
+                // Another upsert occurred during the upsert, try again. You could omit the
+                // upsert option here if you don't ever delete docs while this is running.
+                await Calendar_users.updateOne({ user_id: res.data.names[0].metadata.source.id }, userData, { upsert: true },
+                    function (err) {
+                        if (err) {
+                            console.trace(err);
+                        }
+                    });
+            }
+        });
+    await Calendar_tokens.updateOne({ user_id: res.data.names[0].metadata.source.id }, tokenData, { upsert: true },
+        async function (err) {
+            if (err && err.code === 11000) {
+                console.log("Retrying update...")
+                // Another upsert occurred during the upsert, try again. You could omit the
+                // upsert option here if you don't ever delete docs while this is running.
+                await Calendar_tokens.updateOne({ user_id: res.data.names[0].metadata.source.id }, tokenData, { upsert: true },
+                    function (err) {
+                        if (err) {
+                            console.trace(err);
+                        }
+                    });
+            }
+        });
     return res.data.names[0].metadata.source.id;
 }
 
@@ -66,24 +93,36 @@ async function saveCalendarData(token, user_id) {
         }
         for (let calendarItem of calendarItems) {
             let calendarId = calendarItem.id;
-            console.log(calendarItem)
-            calendarItem.user_id = await user_id;
+            calendarItem.user_id = user_id;
             calendarsToPush.push({
                 updateOne: {
                     filter: {
                         id: calendarId,
-                        user_id: calendarItem.user_id
+                        user_id: user_id
                     },
                     update: calendarItem,
                     upsert: true
                 }
             });
             saveEventsForCalendarId(calendar, calendarId)
-            await Calendar_users.updateOne({ user_id: await user_id }, { "$addToSet": { calendarIds: calendarId } }, { upsert: true });
+            await Calendar_users.updateOne({ user_id: user_id }, { "$addToSet": { calendarIds: calendarId } }, { upsert: true },
+            async function (err) {
+                if (err && err.code === 11000) {
+                    console.log("Retrying update...")
+                    // Another upsert occurred during the upsert, try again. You could omit the
+                    // upsert option here if you don't ever delete docs while this is running.
+                    await Calendar_users.updateOne({ user_id: user_id }, { "$addToSet": { calendarIds: calendarId } }, { upsert: true },
+                        function (err) {
+                            if (err) {
+                                console.trace(err);
+                            }
+                        });
+                }
+            });
 
         }
         if (calendarsToPush.length) {
-            await Calendar.bulkWrite(calendarsToPush, { ordered: true });
+            await Calendar.bulkWrite(calendarsToPush, { ordered: false });
         }
     }
     catch (err) {
@@ -100,7 +139,7 @@ async function saveEventsForCalendarId(calendar, calendarId) {
     eventStartUpperBound.setDate(eventEndLowerBound.getDate() + 30)
 
     try {
-        console.log("The date of timeMax:", eventStartUpperBound, "The date of timeMin:", eventEndLowerBound);
+        console.log("The date of timeMax:", (new Date()).toISOString(), "The date of timeMin:", eventEndLowerBound);
         let events = await calendar.events.list({
             'calendarId': calendarId,
             'timeMin': eventEndLowerBound.toISOString(),
@@ -129,7 +168,7 @@ async function saveEventsForCalendarId(calendar, calendarId) {
                     }
                 });
             }
-            await Event.bulkWrite(eventsToPush, { ordered: true });
+            await Event.bulkWrite(eventsToPush, { ordered: false });
         }
     }
 
