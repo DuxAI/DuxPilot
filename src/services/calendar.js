@@ -93,7 +93,7 @@ async function saveCalendarData(token, user_id) {
         }
         for (let calendarItem of calendarItems) {
             let calendarId = calendarItem.id;
-            calendarItem.user_id = user_id;
+            calendarItem.user_id = await user_id;
             calendarsToPush.push({
                 updateOne: {
                     filter: {
